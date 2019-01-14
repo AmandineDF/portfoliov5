@@ -1,0 +1,29 @@
+*{
+    color: lightgrey;
+    font-family: Helvetica;
+}
+
+canvas {
+    height: 100vh;
+    width: 100vw;
+    
+    position: absolute;
+    top: 0;
+    z-index: -10;
+}
+
+.welcome__screen {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome__title {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+}

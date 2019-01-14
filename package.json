@@ -1,0 +1,29 @@
+{
+  "name": "portfoliov5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmandineDF/portfoliov5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmandineDF/portfoliov5/issues"
+  },
+  "homepage": "https://github.com/AmandineDF/portfoliov5#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0",
+    "sass": "^1.16.0"
+  },
+  "dependencies": {
+    "blocs": "^2.0.0",
+    "config": "^3.0.1",
+    "global": "^4.3.2"
+  }
+}
