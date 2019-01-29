@@ -1,8 +1,3 @@
-*{
-    color: lightgrey;
-    font-family: Helvetica;
-}
-
 canvas {
     height: 100vh;
     width: 100vw;
@@ -12,18 +7,24 @@ canvas {
     z-index: -10;
 }
 
-.welcome__screen {
-    height: 100%;
-    width: 100%;
+body {
+    background: rgb(29, 29, 29);
+    color: white;
+    background-image: url(../images/texture/noise.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .wave {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+    }
 
-.welcome__title {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: space-around;
+    .graphics {
+        position: fixed;
+        height: auto;
+        width: 80vw;
+    }
 }

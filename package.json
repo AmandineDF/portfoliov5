@@ -24,6 +24,7 @@
   "dependencies": {
     "blocs": "^2.0.0",
     "config": "^3.0.1",
-    "global": "^4.3.2"
+    "global": "^4.3.2",
+    "three": "^0.100.0"
   }
 }

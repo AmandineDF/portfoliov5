@@ -1,0 +1,27 @@
+section:first-child{
+
+    p {
+        font-style: italic;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.8rem;
+        margin: 5rem 0rem;
+    }
+
+    .more {
+        height: 60px;
+        width: 215px;
+        border: solid 2px white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-style: normal;
+            @include welcome-text;
+        }
+    }
+}
