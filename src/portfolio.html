@@ -18,8 +18,26 @@
     <script defer src="js/script.js"></script>
   </head>
   <body>
+    <div class="loader" id="loader"></div>
+    <div class="vignette"></div>
+
     <canvas class="wave"></canvas>
-    <img class="graphics" src="images/texture/graphics.png" />
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+      <div class="header__introduction">
+        <h1>Amandine Donat-Filliod</h1>
+        <h2>UX/UI Designer</h2>
+        <h3>Looking for an internship</h3>
+      </div>
+      <img alt="logo" class="header__logo" src="images/content/logo.svg" />
+      <ul class="header__languages">
+        <li>FR</li>
+        <li>EN</li>
+        <li>中文</li>
+      </ul>
+    </header>
+
     <nav class="menu">
       <a class="menu__item"><img src="images/icons/yi.PNG"/></a>
       <a class="menu__item"><img src="images/icons/er.PNG"/></a>
@@ -27,17 +45,11 @@
       <a class="menu__item"><img src="images/icons/si.PNG"/></a>
       <a class="menu__item"><img src="images/icons/wu.PNG"/></a>
     </nav>
-    <header><img alt="logo" src="images/content/logo.svg" /></header>
-    <div class="welcome__languages">
-      <ul>
-        <li>FR</li>
-        <li>EN</li>
-        <li>中文</li>
-      </ul>
-    </div>
+
     <main>
+
       <section>
-        <p>
+        <p class="greeting">
           Hey !<br />
           I'm
         </p>
@@ -47,19 +59,50 @@
           <li>UX/UI Designer</li>
           <li>Graphist</li>
         </ul>
-        <div class="more">
-            <p>See more</p>
+        <div class="more__button">
+          <p>See more</p>
         </div>
       </section>
-      <section><h4>Works</h4></section>
-      <section><h4>Skills</h4></section>
-      <section><h4>Who am I</h4></section>
+
+      <section>
+        <div class="content">
+            <div class="project">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h4>Works</h4>
+        </div>
+      </section>
+
+      <section>
+          <div class="content">
+              <div class="project"></div>
+              <h4>Skills</h4>
+          </div>
+      </section>
+
+      <section>
+          <div class="content">
+              <div class="project">
+              </div>
+              <h4>Who I am</h4>
+          </div>
+      </section>
+
       <section>
         <p>Want to contact me ?</p>
         <button>E-mail</button>
       </section>
+
       <section>PAGE 6</section>
     </main>
+
     <footer>FOOTER</footer>
   </body>
 </html>

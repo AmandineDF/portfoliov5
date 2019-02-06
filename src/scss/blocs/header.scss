@@ -1,15 +1,33 @@
-header {
+.header {
     height: 4.2rem;
     width: 100%;
-    padding: 5px 0px;
+    padding: 5px 10px;
 
     position: fixed;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
-    img {
+    * {
+        display: inline-block;
+        font-size: 12px;
+    }
+
+    .header__introduction {
+        width: 25%;
+
+        .header__introduction * {
+            display: block;
+        }
+    }
+
+    .header__logo {
         height: 100%;
-        width: auto;
+        width: 50%;
+    }
+
+    .header__languages {
+        width: 25%;
+        text-align: right;
     }
 }

@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Amandine Donat-Filliod Portfolio</title>
     <meta
       name="description"
       content="Portfolio d'Amandine Donat-Filliod, étudiante en développement web."
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="scss/styles.scss" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="scss/styles.scss"
+    />
     <script defer src="js/canvas.js"></script>
     <!--<script defer src="js/script.js"></script>-->
-</head>
-<body>
-    <div class="welcome__screen">
-        <header>
-            <img alt="logo" src="images/content/logo.svg"/>
-        </header>
-        <div class="welcome__introduction">
-            <h1>Amandine Donat-Filliod</h1>
-            <h2>UX/UI Designer</h2>
-            <h3>Looking for an internship</h3>
-        </div>
-        <div class="welcome__languages">
-            <ul>
-                <li>FR</li>
-                <li>EN</li>
-                <li>中文</li>
-            </ul>
-        </div>
-        <ul class="welcome__title">
-            <li>W</li>
-            <li>E</li>
-            <li>L</li>
-            <li>C</li>
-            <li>O</li>
-            <li>M</li>
-            <li>E</li>
-        </ul>
+  </head>
+  <body>
+    <div class="loader" id="loader"></div>
+    <div class="vignette"></div>
 
+    <div class="welcome__screen" id="welcome__screen">
+      <header class="header">
+        <div class="header__introduction">
+          <h1>Amandine Donat-Filliod</h1>
+          <h2>UX/UI Designer</h2>
+          <h3>Looking for an internship</h3>
+        </div>
+        <img alt="logo" class="header__logo" src="images/content/logo.svg" />
+        <ul class="header__languages">
+          <li>FR</li>
+          <li>EN</li>
+          <li>中文</li>
+        </ul>
+      </header>
+
+      <main class="welcome__text">
+        <ul class="welcome__title">
+          <li>W</li>
+          <li>E</li>
+          <li>L</li>
+          <li>C</li>
+          <li>O</li>
+          <li>M</li>
+          <li>E</li>
+        </ul>
         <p class="welcome__subtitle">You found my portfolio.</p>
 
         <div class="welcome__CTA">
-            <p>Want to explore ?</p>
-            <a href="portfolio.html"><div class="button" id="welcome-button">Go</div></a>
+          <p>Want to explore ?</p>
+          <a href="portfolio.html" id="enterButton" class="welcome__button"
+            >Go</a
+          >
         </div>
+      </main>
     </div>
-</body>
+  </body>
 </html>

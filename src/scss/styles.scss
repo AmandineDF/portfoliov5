@@ -1,6 +1,7 @@
 @import 'vendors/reset.scss';
 /*@import 'vendors/library';*/
 
+@import 'config/anim.scss';
 @import 'config/medias.scss';
 @import 'config/colors.scss';
 @import 'config/fonts';
@@ -14,4 +15,5 @@
 @import 'blocs/menu.scss';
 @import 'blocs/header.scss';
 @import 'blocs/section1.scss';
+@import 'blocs/section2.scss';
 @import 'blocs/footer.scss';
