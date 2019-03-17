@@ -20,14 +20,90 @@ window.onload = function() {
     }, 500);
   });
 
-  //---- WEBGL ----//
+    //---- PARTICLES ----//
+    setInterval(function() {
+      var particle = document.createElement("div");
+      particle.style.top = window.innerHeight * Math.random() + "px";
+      particle.style.left = window.innerWidth * Math.random() + "px";
+  
+      var span = document.createElement("span");
+      span.innerHTML = Math.random() > 0.5 ? "◯" : "+";
+      span.style.fontSize = 10 * Math.random() + 20 + "px";
+  
+      var particles = document.getElementById("particles");
+      particle.append(span);
+      particles.append(particle);
+  
+      setTimeout(function() {
+        particle.remove();
+      }, 10000);
+    }, 1000);
+  
+
+  //--------------- CANVAS 2D ---------------//
+
+  let canvas2D = document.querySelector("#canvas2D");
+  let ctx = canvas2D.getContext("2d");
+  canvas2D.height = window.innerHeight;
+  canvas2D.width = window.innerWidth;
+
+  window.onresize = function() {
+    canvas2D.height = window.innerHeight;
+    canvas2D.width = window.innerWidth;
+  }
+
+  var waveCounter = 0;
+  var deltaTime = 0;
+  var lastTime = Date.now();
+
+  var update = function() {
+    deltaTime = (Date.now() - lastTime) / 1000;
+    lastTime = Date.now();
+
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    //Animation
+    waveCounter += 0.08 * Math.PI * 2 * deltaTime; //percent(animation speed) * one sin * per second
+
+    //Draw
+    ctx.beginPath();
+    ctx.moveTo(0, window.innerHeight);
+
+    var ratio = window.innerWidth / 1920;
+
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 350 * ratio;
+
+    var precision = 15;
+    var amplitude = 100 * ratio;
+
+    for (let i = 0; i <= precision; i++) {
+      let sin = Math.sin(waveCounter + (i / precision) * Math.PI * 2);
+      let x = (window.innerWidth / precision) * i + sin * amplitude;
+      let y =
+        (window.innerHeight / precision) * (precision - i) + sin * amplitude;
+
+      ctx.lineTo(x, y);
+    }
+
+    ctx.stroke();
+    ctx.globalAlpha = 0.1; //Note : globalAlpha is for all of the canvas
+    ctx.filter = "blur(20px)";
+
+    requestAnimationFrame(update);
+  }
+
+  update();
+
+
+  //--------------- WEBGL ---------------//
 
   // LIBRARIES
   var THREE = require("three");
 
   // IMAGES & TEXTURES
   var skyImage = require("../images/texture/sky.png");
-  var satelliteImage = require("../images/texture/planet.jpg");
+  var satelliteImage = require("../images/texture/planetcolor.png");
 
   var skyTexture = new THREE.TextureLoader().load(skyImage);
   var satelliteTexture = new THREE.TextureLoader().load(satelliteImage);
@@ -43,18 +119,20 @@ window.onload = function() {
   );
   camera.position.z = 10;
 
-  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, });
   renderer.setSize(window.innerWidth, window.innerHeight /*updateStyle*/);
+  renderer.domElement.id = "3Dcanvas";
   document.body.appendChild(renderer.domElement); //create a <canvas> element
 
-  let canvas = document.querySelector("canvas");
+  //DOESN'T WORK (Attention au nom de la classe)
+  /*let canvas = document.querySelector("3Dcanvas");
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
   window.onresize = function() {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
-  };
+  };*/
 
   //LIGHTS
 
@@ -71,7 +149,7 @@ window.onload = function() {
 
   // PLANE
 
-  var geometry = new THREE.PlaneGeometry( 125, 60, 32 );
+  /*var geometry = new THREE.PlaneGeometry( 125, 60, 32 );
 
   var material = new THREE.MeshBasicMaterial({
     color: 0xffffff,
@@ -80,7 +158,7 @@ window.onload = function() {
   });
   var plane = new THREE.Mesh( geometry, material );
   plane.position.set(0, 0, -60);
-  scene.add( plane );
+  scene.add( plane );*/
 
   //SATELLITE
 
@@ -94,7 +172,7 @@ window.onload = function() {
   });
 
   var satellite = new THREE.Mesh(satelliteGeometry, satelliteMaterial);
-  satellite.position.set(6, 0, 0);
+  satellite.position.set(0, 0, -6);
   scene.add(satellite);
 
   //BIG PLANET
@@ -147,22 +225,22 @@ window.onload = function() {
 
   var clock = new THREE.Clock();
   var r = 5;
-  var counter = 0;
+  var orbitCounter = 0;
   var incrementation = (2 * Math.PI) / 1000; //TODO : convert in degrees
 
   var render = function() {
     var delta = clock.getDelta(); //get time between each frames (always stored in var)
 
     //planet rotation animation
-    planet.rotation.x -= (Math.PI / 180) * 10 * delta; //convert radiant (initial) to degrees -> 10° per second
+    planet.rotation.x -= (Math.PI / 180) * 10 * delta; //convert radiant (initial) to degrees -> 10° per second*/
 
     //satellite rotation animation
     //satellite.rotation.y -= Math.PI / 180*10 * delta;
 
     //orbit animation
-    counter += incrementation;
-    satellite.position.x = r * Math.cos(counter);
-    satellite.position.z = r * Math.sin(counter);
+    orbitCounter += incrementation;
+    satellite.position.z = r * Math.sin(orbitCounter);
+    satellite.position.x = r * Math.cos(orbitCounter);
 
     renderer.render(scene, camera);
     requestAnimationFrame(render); //60fps
@@ -170,3 +248,4 @@ window.onload = function() {
 
   render();
 };
+

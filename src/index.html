@@ -15,47 +15,74 @@
       media="screen"
       href="scss/styles.scss"
     />
-    <script defer src="js/canvas.js"></script>
-    <!--<script defer src="js/script.js"></script>-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/plugins/ScrollToPlugin.min.js"></script>
+    <script defer src="js/script.js"></script>
   </head>
   <body>
-    <div class="loader" id="loader"></div>
-    <div class="vignette"></div>
-
-    <div class="welcome__screen" id="welcome__screen">
-      <header class="header">
-        <div class="header__introduction">
-          <h1>Amandine Donat-Filliod</h1>
-          <h2>UX/UI Designer</h2>
-          <h3>Looking for an internship</h3>
+    <canvas class="canvas2D" id="canvas2D"></canvas>
+    <div class="colorFilter"></div>
+    <header>
+      <a href="index.html"><img alt="logo" src="./images/content/logo.svg" class="logo"/></a>
+      <img alt="burger" src="./images/icons/menu.svg" class="burger" />
+    </header>
+    <nav class="leftNav">
+      <ul>
+        <li><img src="./images/icons/yi.PNG"/></li>
+        <li><img src="./images/icons/er.png"/></li>
+        <li><img src="./images/icons/san.png"/></li>
+        <li><img src="./images/icons/si.png"/></li>
+        <li><img src="./images/icons/wu.png"/></li>
+      </ul>
+    </nav>
+    <nav class="rightNav">
+      <ul>
+        <li class="upBtn"><img src="./images/icons/arrow.svg"></li>
+        <li class="downBtn"><img src="./images/icons/arrow.svg"></li>
+      </ul>
+    </nav>
+    <main id="main">
+      <section class="landing">
+        <div class="landing__content" data-depth = 0.2>
+            <p>Hello</p>
+            <p>I'm</p>
+            <h1 id="name">Amandine Donat-Filliod</h1>
+            <ul>
+              <li>UX/UI Designer</li>
+              <li>Front Developer</li>
+              <li>Graphist</li>
+            </ul>
+            <p>Want to explore ?</p>
+            <div class="goBtn">GO</div>
         </div>
-        <img alt="logo" class="header__logo" src="images/content/logo.svg" />
-        <ul class="header__languages">
-          <li>FR</li>
-          <li>EN</li>
-          <li>中文</li>
-        </ul>
-      </header>
+      </section>
 
-      <main class="welcome__text">
-        <ul class="welcome__title">
-          <li>W</li>
-          <li>E</li>
-          <li>L</li>
-          <li>C</li>
-          <li>O</li>
-          <li>M</li>
-          <li>E</li>
-        </ul>
-        <p class="welcome__subtitle">You found my portfolio.</p>
+      <section class="works">
+        <div class="projects" id="projects" data-depth = 0.2>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
 
-        <div class="welcome__CTA">
-          <p>Want to explore ?</p>
-          <a href="portfolio.html" id="enterButton" class="welcome__button"
-            >Go</a
-          >
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-      </main>
-    </div>
+        <h2 data-depth = 0.5>My Works</h2>
+      </section>
+
+      <section class="skills">
+        <h2 data-depth = 0.5>My Skills</h2>
+      </section>
+
+      <section class="about">
+          <h2 data-depth = 0.5>Who Am I</h2>
+        </section>
+    </main>
+    <footer>
+      <p class="contact">Contact</p>
+    </footer>
+    <div class="border"></div>
   </body>
 </html>

@@ -75,7 +75,8 @@ body {
   background-size: cover;
 
   .wave {
-    position: fixed;
+    position: absolute;
+    z-index: -20;
     height: 100%;
     width: 100%;
   }

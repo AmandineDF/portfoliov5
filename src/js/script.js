@@ -1,34 +1,29 @@
 window.onload = function() {
-  //---- SCRIPT ----//
-  var loader = document.getElementById("loader");
-  setTimeout(function() {
-    loader.style.opacity = 0;
-  }, 500);
 
-  //---- SIN WAVE ----//
-  let canvas = document.querySelector(".wave");
-  let ctx = canvas.getContext("2d");
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
+  //--------------- CANVAS 2D ---------------//
+
+  let canvas2D = document.querySelector("#canvas2D");
+  let ctx = canvas2D.getContext("2d");
+  canvas2D.height = window.innerHeight;
+  canvas2D.width = window.innerWidth;
 
   window.onresize = function() {
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-  };
+    canvas2D.height = window.innerHeight;
+    canvas2D.width = window.innerWidth;
+  }
 
-  var counter = 0;
+  var waveCounter = 0;
   var deltaTime = 0;
   var lastTime = Date.now();
 
-  function update() {
-    //Delta Time
+  var update = function() {
     deltaTime = (Date.now() - lastTime) / 1000;
     lastTime = Date.now();
 
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     //Animation
-    counter += 0.08 * Math.PI * 2 * deltaTime; //percent(animation speed) * one sin * per second
+    waveCounter += 0.08 * Math.PI * 2 * deltaTime; //percent(animation speed) * one sin * per second
 
     //Draw
     ctx.beginPath();
@@ -43,7 +38,7 @@ window.onload = function() {
     var amplitude = 100 * ratio;
 
     for (let i = 0; i <= precision; i++) {
-      let sin = Math.sin(counter + (i / precision) * Math.PI * 2);
+      let sin = Math.sin(waveCounter + (i / precision) * Math.PI * 2);
       let x = (window.innerWidth / precision) * i + sin * amplitude;
       let y =
         (window.innerHeight / precision) * (precision - i) + sin * amplitude;
@@ -51,8 +46,8 @@ window.onload = function() {
       ctx.lineTo(x, y);
     }
 
-    ctx.globalAlpha = 0.05; //Note : globalAlpha is for all of the canvas
     ctx.stroke();
+    ctx.globalAlpha = 0.1; //Note : globalAlpha is for all of the canvas
     ctx.filter = "blur(20px)";
 
     requestAnimationFrame(update);
@@ -60,22 +55,209 @@ window.onload = function() {
 
   update();
 
-  //---- PARTICLES ----//
-  setInterval(function() {
-    var particle = document.createElement("div");
-    particle.style.top = window.innerHeight * Math.random() + "px";
-    particle.style.left = window.innerWidth * Math.random() + "px";
 
-    var span = document.createElement("span");
-    span.innerHTML = Math.random() > 0.5 ? "◯" : "+";
-    span.style.fontSize = 10 * Math.random() + 20 + "px";
+  //RANDOMIZE TEXT
+  var text = document.getElementById('name')
+  textContent = text.innerHTML;
 
-    var particles = document.getElementById("particles");
-    particle.append(span);
-    particles.append(particle);
+  var randomLetters = "丶丿乙人玉力厶土夂女寸小尸父火工己广弋彳心曰";
+  var currentIndex = 0;
 
-    setTimeout(function() {
-      particle.remove();
-    }, 10000);
-  }, 1000);
+  var randomize = () => {
+    var newString = '';
+
+    for(let i = 0; i < textContent.length; i++) {
+
+      if(i == currentIndex && textContent.charAt(i) != ' ') {
+        var randomIndex = Math.floor(randomLetters.length * Math.random());
+
+        newString += randomLetters.charAt(randomIndex);
+      } else {
+        newString += textContent.charAt(i);
+      }
+
+    }
+
+    text.innerHTML = newString;
+
+    if(currentIndex < textContent.length) {
+      currentIndex++;
+      setTimeout( randomize, 60 );
+    } else {
+      currentIndex = 0;
+    }
+  }
+
+  randomize();
+
+
+  //CONTROLLED SCROLL
+  let scrollIndex = 0;
+  let canwheel = true;
+  
+  window.onwheel = function(e) {
+    e.preventDefault();
+    
+    if(canwheel){
+      console.log(e.deltaY);
+      
+      canwheel = false;
+      
+      if(e.deltaY > 0 && scrollIndex < 4) {
+        scrollIndex++;
+      } else if (e.deltaY < 0 && scrollIndex > 0) {
+        scrollIndex--;
+      } else {
+        canwheel = true;
+        return;
+      }
+
+      if(scrollIndex == 1) {
+        document.getElementById('projects').classList.add('is-reached');
+      } else {
+        document.getElementById('projects').classList.remove('is-reached');
+      }
+      
+      setTimeout( () => {
+        canwheel = true;
+      }, 2000);
+      
+      TweenMax.to(window, 1, {scrollTo: scrollIndex * window.innerHeight})
+      console.log(scrollIndex);
+    }
+  }
+
+
+  //MOUSEMOVE PARALLAX
+  class Parallax {
+    constructor( intensity, smoothing ){
+      this.intensity = intensity;
+      this.smoothing = smoothing;
+      
+      this.mouse = { x: -1, y: -1 };
+      this.mouseDelta = { x: 0, y: 0 };
+      
+      this.currentDelta = { x: 0, y: 0 };
+
+      this.queryElements(); //targeted elements
+
+      window.addEventListener( "mousemove", ( event ) => {
+        this.mouse = { x: event.clientX, y: event.clientY };
+        let origin = { x: window.innerWidth/2, y: window.innerHeight/2 };
+        this.mouseDelta = { x: event.clientX - origin.x, y: event.clientY - origin.y }; 
+      });
+      
+      this.update();
+    }
+
+    getMovement(){
+      return {x:-this.currentDelta.x * this.intensity,y:-this.currentDelta.y * this.intensity};
+    }
+
+    queryElements(){
+      this.elements = document.querySelectorAll("[data-depth]"); 
+    }
+
+    update(){
+      this.currentDelta.x += (this.mouseDelta.x - this.currentDelta.x) * this.smoothing;
+      this.currentDelta.y += (this.mouseDelta.y - this.currentDelta.y) * this.smoothing;
+      let p = this.getMovement();
+      this.elements.forEach((element)=>{
+        let depth = element.getAttribute("data-depth");
+        let target = {x: p.x * depth,y: p.y * depth};
+        TweenMax.set(element,{x: target.x+"px",y: target.y+"px",force3D:true })
+      });
+      requestAnimationFrame(()=>{
+        this.update();
+      });
+    }
+  }
+
+  let parallax = new Parallax(0.3, 0.05);
+
+
+
+  //--------------- WEBGL ---------------//
+
+  // LIBRARIES
+  var THREE = require("three");
+
+  //IMAGES & TEXTURES
+  var noiseImage = require("../images/texture/noise.png");
+
+  var planetTexture = new THREE.TextureLoader().load(noiseImage);
+  planetTexture.magFilter = THREE.NearestFilter;
+  planetTexture.userData = {
+    fitTo : 0.01
+  };
+
+  //SCENE
+  var scene = new THREE.Scene();
+
+  var camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    1,
+    1000
+  );
+  camera.position.z = 50;
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.domElement.classList.add('canvas3D');
+  document.body.appendChild( renderer.domElement );
+
+  //LIGHTS
+  var ambientLight = new THREE.AmbientLight(0x19171A);
+  //scene.add(ambientLight);
+
+  var light = new THREE.PointLight(0xffffff, 1, 100);
+  light.position.set(0, 15, -5);
+  scene.add(light);
+
+  //FOG
+  /*fogColor = new THREE.Color(0x19171A);
+  scene.fog = new THREE.Fog( fogColor, 1, 30 );*/
+
+  //BIG PLANET
+  var planetGeometry = new THREE.SphereGeometry(2.8, 50, 50);
+  var planetColor = new THREE.Color( 'skyblue' );
+
+  var planetMaterial = new THREE.MeshStandardMaterial({
+    map: planetTexture,
+    color: planetColor,
+    roughness: 0.7,
+    metalness: 0.4
+  });
+
+  var planet=  new THREE.Mesh(planetGeometry, planetMaterial);
+  planet.rotation.z += 90;
+  scene.add(planet);
+
+  //GRID
+  var horizontalGrid = new THREE.GridHelper(100, 20);
+  horizontalGrid.position.set(0, -4, 0);
+  scene.add(horizontalGrid);
+
+
+  //RENDER
+  var clock = new THREE.Clock();
+
+  var render = function() {
+    var delta = clock.getDelta();
+
+    planet.rotation.x -= (Math.PI / 180) * 10 * delta;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+
+  render();
+
+  TweenMax.to( camera.position, 2, {
+    z: 10,
+    delay: 1,
+    ease : Power4.easeOut
+  })
+
 };
