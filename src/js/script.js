@@ -1,4 +1,50 @@
+var initRandomize = function() {
+  document.querySelectorAll(".randomized").forEach(function(element) {
+    element.style.opacity = 0;
+  });
+};
+
+//RANDOMIZE TEXT
+var randomize = function(selector) {
+  var element = document.querySelector(selector);
+  var text = element.innerHTML;
+
+  element.style.opacity = 1;
+
+  var randomLetters = "丶丿乙人玉力厶土夂女寸小尸父火工己广弋彳心曰";
+  var currentIndex = 0;
+
+  function updateRandomize() {
+    var displayText = "";
+    for (let i = 0; i < text.length; i++) {
+      if (i == currentIndex && text.charAt(i) != " ") {
+        var randomIndex = Math.floor(randomLetters.length * Math.random());
+        displayText += randomLetters.charAt(randomIndex);
+      } else if (i < currentIndex) {
+        displayText += text.charAt(i);
+      }
+    }
+    element.innerHTML = displayText;
+
+    if (currentIndex < text.length) {
+      currentIndex++;
+      setTimeout(updateRandomize, 60);
+    } else {
+      currentIndex = 0;
+    }
+  }
+
+  updateRandomize();
+};
+
 window.onload = function() {
+  TweenMax.set(window, {
+    scrollTo: 0
+  });
+
+  initRandomize();
+
+  randomize("#name");
 
   //--------------- CANVAS 2D ---------------//
 
@@ -10,7 +56,7 @@ window.onload = function() {
   window.onresize = function() {
     canvas2D.height = window.innerHeight;
     canvas2D.width = window.innerWidth;
-  }
+  };
 
   var waveCounter = 0;
   var deltaTime = 0;
@@ -47,63 +93,26 @@ window.onload = function() {
     }
 
     ctx.stroke();
-    ctx.globalAlpha = 0.1; //Note : globalAlpha is for all of the canvas
-    ctx.filter = "blur(20px)";
+    ctx.globalAlpha = 0.2; //Note : globalAlpha is for all of the canvas
+    ctx.filter = "blur(40px)";
 
     requestAnimationFrame(update);
-  }
+  };
 
   update();
-
-
-  //RANDOMIZE TEXT
-  var text = document.getElementById('name')
-  textContent = text.innerHTML;
-
-  var randomLetters = "丶丿乙人玉力厶土夂女寸小尸父火工己广弋彳心曰";
-  var currentIndex = 0;
-
-  var randomize = () => {
-    var newString = '';
-
-    for(let i = 0; i < textContent.length; i++) {
-
-      if(i == currentIndex && textContent.charAt(i) != ' ') {
-        var randomIndex = Math.floor(randomLetters.length * Math.random());
-
-        newString += randomLetters.charAt(randomIndex);
-      } else {
-        newString += textContent.charAt(i);
-      }
-
-    }
-
-    text.innerHTML = newString;
-
-    if(currentIndex < textContent.length) {
-      currentIndex++;
-      setTimeout( randomize, 60 );
-    } else {
-      currentIndex = 0;
-    }
-  }
-
-  randomize();
-
 
   //CONTROLLED SCROLL
   let scrollIndex = 0;
   let canwheel = true;
-  
+
   window.onwheel = function(e) {
     e.preventDefault();
-    
-    if(canwheel){
-      console.log(e.deltaY);
-      
+
+    if (canwheel) {
+
       canwheel = false;
-      
-      if(e.deltaY > 0 && scrollIndex < 4) {
+
+      if (e.deltaY > 0 && scrollIndex < 4) {
         scrollIndex++;
       } else if (e.deltaY < 0 && scrollIndex > 0) {
         scrollIndex--;
@@ -112,62 +121,75 @@ window.onload = function() {
         return;
       }
 
-      if(scrollIndex == 1) {
-        document.getElementById('projects').classList.add('is-reached');
-      } else {
-        document.getElementById('projects').classList.remove('is-reached');
-      }
-      
-      setTimeout( () => {
+      setTimeout(() => {
         canwheel = true;
       }, 2000);
-      
-      TweenMax.to(window, 1, {scrollTo: scrollIndex * window.innerHeight})
-      console.log(scrollIndex);
-    }
-  }
 
+      TweenMax.set(window, {
+        scrollTo: scrollIndex * window.innerHeight,
+        callback: function() {
+          if (scrollIndex == 1) {
+            document.getElementById("projects").classList.add("is-reached");
+          } else {
+            document.getElementById("projects").classList.remove("is-reached");
+          }
+        }
+      });
+    }
+  };
 
   //MOUSEMOVE PARALLAX
   class Parallax {
-    constructor( intensity, smoothing ){
+    constructor(intensity, smoothing) {
       this.intensity = intensity;
       this.smoothing = smoothing;
-      
+
       this.mouse = { x: -1, y: -1 };
       this.mouseDelta = { x: 0, y: 0 };
-      
+
       this.currentDelta = { x: 0, y: 0 };
 
       this.queryElements(); //targeted elements
 
-      window.addEventListener( "mousemove", ( event ) => {
+      window.addEventListener("mousemove", event => {
         this.mouse = { x: event.clientX, y: event.clientY };
-        let origin = { x: window.innerWidth/2, y: window.innerHeight/2 };
-        this.mouseDelta = { x: event.clientX - origin.x, y: event.clientY - origin.y }; 
+        let origin = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        this.mouseDelta = {
+          x: event.clientX - origin.x,
+          y: event.clientY - origin.y
+        };
       });
-      
+
       this.update();
     }
 
-    getMovement(){
-      return {x:-this.currentDelta.x * this.intensity,y:-this.currentDelta.y * this.intensity};
+    getMovement() {
+      return {
+        x: -this.currentDelta.x * this.intensity,
+        y: -this.currentDelta.y * this.intensity
+      };
     }
 
-    queryElements(){
-      this.elements = document.querySelectorAll("[data-depth]"); 
+    queryElements() {
+      this.elements = document.querySelectorAll("[data-depth]");
     }
 
-    update(){
-      this.currentDelta.x += (this.mouseDelta.x - this.currentDelta.x) * this.smoothing;
-      this.currentDelta.y += (this.mouseDelta.y - this.currentDelta.y) * this.smoothing;
+    update() {
+      this.currentDelta.x +=
+        (this.mouseDelta.x - this.currentDelta.x) * this.smoothing;
+      this.currentDelta.y +=
+        (this.mouseDelta.y - this.currentDelta.y) * this.smoothing;
       let p = this.getMovement();
-      this.elements.forEach((element)=>{
+      this.elements.forEach(element => {
         let depth = element.getAttribute("data-depth");
-        let target = {x: p.x * depth,y: p.y * depth};
-        TweenMax.set(element,{x: target.x+"px",y: target.y+"px",force3D:true })
+        let target = { x: p.x * depth, y: p.y * depth };
+        TweenMax.set(element, {
+          x: target.x + "px",
+          y: target.y + "px",
+          force3D: true
+        });
       });
-      requestAnimationFrame(()=>{
+      requestAnimationFrame(() => {
         this.update();
       });
     }
@@ -175,21 +197,17 @@ window.onload = function() {
 
   let parallax = new Parallax(0.3, 0.05);
 
-
-
   //--------------- WEBGL ---------------//
 
   // LIBRARIES
   var THREE = require("three");
 
   //IMAGES & TEXTURES
-  var noiseImage = require("../images/texture/noise.png");
+  var noiseImage = require("../images/texture/noise-large.png");
+  var glowImage = require("../images/texture/glow-small.png");
 
   var planetTexture = new THREE.TextureLoader().load(noiseImage);
-  planetTexture.magFilter = THREE.NearestFilter;
-  planetTexture.userData = {
-    fitTo : 0.01
-  };
+  var glowTexture = new THREE.TextureLoader().load(glowImage);
 
   //SCENE
   var scene = new THREE.Scene();
@@ -203,16 +221,16 @@ window.onload = function() {
   camera.position.z = 50;
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.domElement.classList.add('canvas3D');
-  document.body.appendChild( renderer.domElement );
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.domElement.classList.add("canvas3D");
+  document.body.appendChild(renderer.domElement);
 
   //LIGHTS
-  var ambientLight = new THREE.AmbientLight(0x19171A);
+  var ambientLight = new THREE.AmbientLight(0x19171a);
   //scene.add(ambientLight);
 
-  var light = new THREE.PointLight(0xffffff, 1, 100);
-  light.position.set(0, 15, -5);
+  var light = new THREE.PointLight(0xffe0e0, 3, 100);
+  light.position.set(0, 15, 2);
   scene.add(light);
 
   //FOG
@@ -221,24 +239,35 @@ window.onload = function() {
 
   //BIG PLANET
   var planetGeometry = new THREE.SphereGeometry(2.8, 50, 50);
-  var planetColor = new THREE.Color( 'skyblue' );
+  var planetColor = new THREE.Color("skyblue");
 
   var planetMaterial = new THREE.MeshStandardMaterial({
-    map: planetTexture,
     color: planetColor,
+    map: planetTexture,
     roughness: 0.7,
     metalness: 0.4
   });
 
-  var planet=  new THREE.Mesh(planetGeometry, planetMaterial);
+  var planet = new THREE.Mesh(planetGeometry, planetMaterial);
   planet.rotation.z += 90;
   scene.add(planet);
 
-  //GRID
-  var horizontalGrid = new THREE.GridHelper(100, 20);
-  horizontalGrid.position.set(0, -4, 0);
-  scene.add(horizontalGrid);
+  //GLOW
+  var glowGeometry = new THREE.PlaneGeometry(7.4, 7.4, 32);
+  var glowMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    map: glowTexture
+  });
+  glowMaterial.transparent = true;
 
+  var glow = new THREE.Mesh(glowGeometry, glowMaterial);
+  glow.position.set(0, 0.8, 0);
+  scene.add(glow);
+
+  //GRID
+  /*var horizontalGrid = new THREE.GridHelper(100, 20);
+  horizontalGrid.position.set(0, -4, 0);
+  scene.add(horizontalGrid);*/
 
   //RENDER
   var clock = new THREE.Clock();
@@ -248,16 +277,17 @@ window.onload = function() {
 
     planet.rotation.x -= (Math.PI / 180) * 10 * delta;
 
+    glow.rotation.z += (Math.PI / 180) * 80 * delta;
+
     renderer.render(scene, camera);
     requestAnimationFrame(render);
-  }
+  };
 
   render();
 
-  TweenMax.to( camera.position, 2, {
+  TweenMax.to(camera.position, 2, {
     z: 10,
     delay: 1,
-    ease : Power4.easeOut
-  })
-
+    ease: Power4.easeOut
+  });
 };
