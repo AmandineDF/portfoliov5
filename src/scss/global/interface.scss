@@ -1,48 +1,69 @@
-.loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 10;
-  background-color: black;
-  opacity: 1;
-  transition: all 1s;
-  pointer-events: none;
+@font-face {
+  font-family: "Gotham";
+  src: url("fonts/GothamMedium_0.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.vignette {
-  position: fixed;
-  z-index: -5;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-
-  background: radial-gradient(transparent, transparent, black);
-  pointer-events: none;
+body {
+  background: url(../images/texture/noise.png) /*black rgb(25, 23, 26)*/;
+  background-size: 256px 256px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  color: white;
+  font-family: "Gotham";
+  /*cursor: crosshair;*/
 }
 
-/* width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0px; /* remove scrollbar space */
+  background: transparent; /* optional: just make scrollbar invisible */
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgba($color: #000000, $alpha: 0);
+.border {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border: 500px solid rgb(11, 0, 15);
+  pointer-events: none;
+  transition: all 1s ease;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba($color: #808080, $alpha: 0.3);
-  transition: all 0.3s;
-  border-radius: 10px;
+.loader__text {
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    text-transform: uppercase;
+
+    &:nth-child(1){
+      font-size: 5rem;
+    }
+
+    &:nth-child(2){
+      font-size: 2rem;
+    }
+  }
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba($color: #808080, $alpha: 0.7);
+.colorFilter {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -10;
+  background: rgba(123, 0, 134, 0.05);
 }
 
 canvas {
@@ -54,79 +75,14 @@ canvas {
   z-index: -10;
 }
 
-.particles {
+.canvas2D {
   height: 100vh;
-  width: 100vw;
-
-  position: absolute;
-  top: 0;
-  z-index: -5;
+  width: 100%;
+  position: fixed;
+  z-index: -50;
 }
 
-body {
-  background: rgb(29, 29, 29);
-  color: white;
-  @include common-text;
-
-  background-image: url(../images/texture/noise.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-
-  .wave {
-    position: absolute;
-    z-index: -20;
-    height: 100%;
-    width: 100%;
-  }
-
-  .particles {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-
-    div {
-      position: fixed;
-      animation: 8s up;
-      opacity: 0;
-    }
-
-    span {
-      color: grey;
-      font-family: sans-serif;
-      display: block;
-      animation: 5s rotation linear infinite;
-    }
-
-    @keyframes up {
-      0% {
-        opacity: 1;
-        transform: translateY(100px) scale(0);
-      }
-
-      50% {
-        transform: translateY(0) scale(1);
-      }
-
-      80% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(0) scale(1);
-        opacity: 0;
-      }
-    }
-
-    @keyframes rotation {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  }
+.canvas3D {
+  position: fixed;
+  z-index: -20;
 }

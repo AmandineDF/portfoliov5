@@ -1,41 +1,16 @@
-var initRandomize = function() {
-  document.querySelectorAll(".randomized").forEach(function(element) {
-    element.style.opacity = 0;
-  });
-};
+//----------------------------------- IMPORTS -----------------------------------------//
 
-//RANDOMIZE TEXT
-var randomize = function(selector) {
-  var element = document.querySelector(selector);
-  var text = element.innerHTML;
+import Parallax from "./parallax";
+import SinWave from "./sinwave";
+import {
+  initFromBottom,
+  initRandomize,
+  animateFromBottom,
+  randomize,
+  animateSection
+} from "./animations";
 
-  element.style.opacity = 1;
-
-  var randomLetters = "丶丿乙人玉力厶土夂女寸小尸父火工己广弋彳心曰";
-  var currentIndex = 0;
-
-  function updateRandomize() {
-    var displayText = "";
-    for (let i = 0; i < text.length; i++) {
-      if (i == currentIndex && text.charAt(i) != " ") {
-        var randomIndex = Math.floor(randomLetters.length * Math.random());
-        displayText += randomLetters.charAt(randomIndex);
-      } else if (i < currentIndex) {
-        displayText += text.charAt(i);
-      }
-    }
-    element.innerHTML = displayText;
-
-    if (currentIndex < text.length) {
-      currentIndex++;
-      setTimeout(updateRandomize, 60);
-    } else {
-      currentIndex = 0;
-    }
-  }
-
-  updateRandomize();
-};
+//----------------------------------- WINDOW ONLOAD -----------------------------------------//
 
 window.onload = function() {
   TweenMax.set(window, {
@@ -43,8 +18,11 @@ window.onload = function() {
   });
 
   initRandomize();
+  initFromBottom();
 
-  randomize("#name");
+  let parallax = new Parallax(0.3, 0.05);
+
+  //let sinwave = new SinWave("#canvas2D");
 
   //--------------- CANVAS 2D ---------------//
 
@@ -53,16 +31,16 @@ window.onload = function() {
   canvas2D.height = window.innerHeight;
   canvas2D.width = window.innerWidth;
 
-  window.onresize = function() {
+  window.addEventListener("resize", () => {
     canvas2D.height = window.innerHeight;
     canvas2D.width = window.innerWidth;
-  };
+  });
 
   var waveCounter = 0;
   var deltaTime = 0;
   var lastTime = Date.now();
 
-  var update = function() {
+  var canvas2DUpdate = function() {
     deltaTime = (Date.now() - lastTime) / 1000;
     lastTime = Date.now();
 
@@ -96,106 +74,73 @@ window.onload = function() {
     ctx.globalAlpha = 0.2; //Note : globalAlpha is for all of the canvas
     ctx.filter = "blur(40px)";
 
-    requestAnimationFrame(update);
+    requestAnimationFrame(canvas2DUpdate);
   };
 
-  update();
+  canvas2DUpdate();
 
   //CONTROLLED SCROLL
-  let scrollIndex = 0;
-  let canwheel = true;
 
-  window.onwheel = function(e) {
-    e.preventDefault();
+  let currentIndex = 0;
+  let canScroll = true;
 
-    if (canwheel) {
+  var changeIndex = function(index) {
+    if (canScroll) {
+      canScroll = false;
 
-      canwheel = false;
+      var selector = "section:nth-child(" + (currentIndex + 1) + ")";
 
-      if (e.deltaY > 0 && scrollIndex < 4) {
-        scrollIndex++;
-      } else if (e.deltaY < 0 && scrollIndex > 0) {
-        scrollIndex--;
+      if (index <= 4 && index >= 0 && index != currentIndex) {
+        currentIndex = index;
       } else {
-        canwheel = true;
+        canScroll = true;
         return;
       }
 
+      console.log(index);
+
+      TweenMax.to(selector, 0.4, {
+        opacity: 0
+      });
+
       setTimeout(() => {
-        canwheel = true;
+        canScroll = true;
       }, 2000);
 
-      TweenMax.set(window, {
-        scrollTo: scrollIndex * window.innerHeight,
-        callback: function() {
-          if (scrollIndex == 1) {
-            document.getElementById("projects").classList.add("is-reached");
-          } else {
-            document.getElementById("projects").classList.remove("is-reached");
-          }
+      TweenMax.set("section:nth-child(" + (currentIndex + 1) + ")", {
+        opacity: 1
+      });
+
+      TweenMax.to(window, 0.8, {
+        scrollTo: currentIndex * window.innerHeight,
+        onComplete: function() {
+          animateSection(currentIndex);
         }
       });
     }
   };
 
-  //MOUSEMOVE PARALLAX
-  class Parallax {
-    constructor(intensity, smoothing) {
-      this.intensity = intensity;
-      this.smoothing = smoothing;
+  var downBtn = document.getElementById('downBtn');
+  downBtn.addEventListener('click', function(){
+    changeIndex(currentIndex + 1);
+  });
 
-      this.mouse = { x: -1, y: -1 };
-      this.mouseDelta = { x: 0, y: 0 };
+  var upBtn = document.getElementById('upBtn');
+  upBtn.addEventListener('click', function(){
+    changeIndex(currentIndex - 1);
+  });
 
-      this.currentDelta = { x: 0, y: 0 };
+  window.onwheel = function(e) {
+    e.preventDefault();
+    changeIndex(currentIndex + Math.sign(e.deltaY));
+  };
 
-      this.queryElements(); //targeted elements
-
-      window.addEventListener("mousemove", event => {
-        this.mouse = { x: event.clientX, y: event.clientY };
-        let origin = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-        this.mouseDelta = {
-          x: event.clientX - origin.x,
-          y: event.clientY - origin.y
-        };
-      });
-
-      this.update();
-    }
-
-    getMovement() {
-      return {
-        x: -this.currentDelta.x * this.intensity,
-        y: -this.currentDelta.y * this.intensity
-      };
-    }
-
-    queryElements() {
-      this.elements = document.querySelectorAll("[data-depth]");
-    }
-
-    update() {
-      this.currentDelta.x +=
-        (this.mouseDelta.x - this.currentDelta.x) * this.smoothing;
-      this.currentDelta.y +=
-        (this.mouseDelta.y - this.currentDelta.y) * this.smoothing;
-      let p = this.getMovement();
-      this.elements.forEach(element => {
-        let depth = element.getAttribute("data-depth");
-        let target = { x: p.x * depth, y: p.y * depth };
-        TweenMax.set(element, {
-          x: target.x + "px",
-          y: target.y + "px",
-          force3D: true
-        });
-      });
-      requestAnimationFrame(() => {
-        this.update();
-      });
-    }
+  var leftNav = document.querySelectorAll('.leftNav li');
+  for(let i = 0; i < leftNav.length; i++){
+    leftNav[i].addEventListener('click', function(){
+      changeIndex(i);
+    });
   }
-
-  let parallax = new Parallax(0.3, 0.05);
 
   //--------------- WEBGL ---------------//
 
@@ -218,12 +163,18 @@ window.onload = function() {
     1,
     1000
   );
-  camera.position.z = 50;
+  camera.position.z = 10;
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.domElement.classList.add("canvas3D");
   document.body.appendChild(renderer.domElement);
+
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 
   //LIGHTS
   var ambientLight = new THREE.AmbientLight(0x19171a);
@@ -232,10 +183,6 @@ window.onload = function() {
   var light = new THREE.PointLight(0xffe0e0, 3, 100);
   light.position.set(0, 15, 2);
   scene.add(light);
-
-  //FOG
-  /*fogColor = new THREE.Color(0x19171A);
-  scene.fog = new THREE.Fog( fogColor, 1, 30 );*/
 
   //BIG PLANET
   var planetGeometry = new THREE.SphereGeometry(2.8, 50, 50);
@@ -250,6 +197,7 @@ window.onload = function() {
 
   var planet = new THREE.Mesh(planetGeometry, planetMaterial);
   planet.rotation.z += 90;
+  planet.position.z = -20;
   scene.add(planet);
 
   //GLOW
@@ -261,13 +209,14 @@ window.onload = function() {
   glowMaterial.transparent = true;
 
   var glow = new THREE.Mesh(glowGeometry, glowMaterial);
-  glow.position.set(0, 0.8, 0);
+  glow.position.y = 0.8;
+  glow.position.z = -20;
   scene.add(glow);
 
   //GRID
-  /*var horizontalGrid = new THREE.GridHelper(100, 20);
-  horizontalGrid.position.set(0, -4, 0);
-  scene.add(horizontalGrid);*/
+  var horizontalGrid = new THREE.GridHelper(100, 20);
+  horizontalGrid.position.y = -25;
+  scene.add(horizontalGrid);
 
   //RENDER
   var clock = new THREE.Clock();
@@ -285,9 +234,52 @@ window.onload = function() {
 
   render();
 
-  TweenMax.to(camera.position, 2, {
-    z: 10,
-    delay: 1,
-    ease: Power4.easeOut
+  setTimeout(function() {
+
+    document.querySelector(".border").style.border = "10px solid lightgrey";
+
+    setTimeout(function() {
+
+      document.querySelector('.loader__text').style.display = "none";
+
+      //WEBGL ANIMATIONS
+      TweenMax.to(planet.position, 2, {
+        z: 0,
+        ease: Power4.easeOut
+      });
+
+      TweenMax.to(glow.position, 2, {
+        z: 0,
+        ease: Power4.easeOut
+      });
+
+      TweenMax.to(horizontalGrid.position, 2, {
+        y: -5,
+        delay: 1,
+        ease: Power4.easeOut
+      });
+
+      //FIRST SECTION
+      setTimeout(function() {
+        animateSection(0);
+      }, 1000);
+    }, 400);
+  }, 3000);
+
+  var projectList = document.querySelectorAll("#project");
+  var openedProject = document.querySelector('.opened__project');
+  for (let i = 0; i < projectList.length; i++) {
+    var project = projectList[i];
+
+    project.addEventListener("click", function() {
+      openedProject.classList.add('clicked');
+      canScroll = false;
+    });
+  }
+
+  var crossIcon = document.getElementById('crossIcon');
+  crossIcon.addEventListener('click', function() {
+    openedProject.classList.remove('clicked');
+    canScroll = true;
   });
 };

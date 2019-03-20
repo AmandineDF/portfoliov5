@@ -1,0 +1,66 @@
+.skills {
+
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .path {
+      stroke-dasharray: 620;
+      stroke-dashoffset: 620;
+      transition: all 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .offset {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .items {
+    position: absolute;
+    top: 15%;
+    left: 22%;
+    display:flex;
+    flex-direction: row;
+    width: 55%;
+    height: 70%;
+    justify-content: space-between;
+  }
+
+  .skillsList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .skillsList__left {
+    text-align: right;
+
+    p:nth-child(1), p:nth-child(5){
+      transform: translateX(110%);
+    }
+
+    p:nth-child(2), p:nth-child(4){
+      transform: translateX(20%);
+    }
+  }
+
+  .skillsList__right {
+
+    p:nth-child(1), p:nth-child(5){
+      transform: translateX(-110%);
+    }
+
+    p:nth-child(2), p:nth-child(4){
+      transform: translateX(-20%);
+    }
+  }
+
+  h2 {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+  }
+}

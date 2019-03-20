@@ -1,0 +1,34 @@
+.about {
+    .about__content {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      top: 15%;
+      left: 0%;
+      right: 0;
+      margin: auto;
+      height: 70%;
+      width: 70%;
+  
+      .photo {
+        height: 100%;
+        width: 45%;
+  
+        img {
+          height: 100%;
+        }
+      }
+  
+      .about__text {
+        height: 100%;
+        width: 45%;
+      }
+    }
+  
+    h2 {
+      position: absolute;
+      top: 80%;
+      left: 10%;
+    }
+  }

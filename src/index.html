@@ -35,57 +35,112 @@
     </header>
     <nav class="leftNav">
       <ul>
-        <li><img src="./images/icons/yi.PNG" /></li>
-        <li><img src="./images/icons/er.png" /></li>
-        <li><img src="./images/icons/san.png" /></li>
-        <li><img src="./images/icons/si.png" /></li>
-        <li><img src="./images/icons/wu.png" /></li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
       </ul>
     </nav>
     <nav class="rightNav">
       <ul>
-        <li class="upBtn"><img src="./images/icons/arrow.svg" /></li>
-        <li class="downBtn"><img src="./images/icons/arrow.svg" /></li>
+        <li class="upBtn" id="upBtn"><img src="./images/icons/arrow.svg" /></li>
+        <li class="downBtn" id="downBtn">
+          <img src="./images/icons/arrow.svg" />
+        </li>
       </ul>
     </nav>
     <main id="main">
       <section class="landing">
         <div class="landing__content" data-depth="0.2">
-          <p>Hello</p>
-          <p>I'm</p>
-          <h1 id="name">Amandine Donat-Filliod</h1>
-          <p>UX/UI Designer • Front Developer • Graphist</p>
-          <p>Want to explore ?</p>
-          <div class="goBtn">GO</div>
+          <p class="landing__el fromBottom">Hello</p>
+          <p class="landing__el fromBottom">I'm</p>
+          <h1 id="name" class="landing__el randomized">Amandine Donat-Filliod</h1>
+          <p class="landing__el fromBottom">UX/UI Designer • Front Developer • Graphist</p>
         </div>
       </section>
 
       <section class="works">
         <div class="projects" id="projects" data-depth="0.2">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div id="project">
+            <h3>Uryō</h3>
+            <img src="images/gif/uryo.gif" />
+          </div>
+          <div id="project">
+            <h3>Adpot'un Heticien</h3>
+            <img src="images/gif/adopt.jpg" />
+          </div>
+          <div id="project">
+            <h3>Easyjet</h3>
+            <img src="images/gif/easyjet.jpg" />
+          </div>
+          <div id="project">
+            <h3>02 Die</h3>
+            <img src="images/gif/o2die.jpg" />
+          </div>
 
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div id="project"></div>
+          <div id="project"></div>
+          <div id="project"></div>
+          <div id="project"></div>
         </div>
-        <h2 data-depth="0.5">My Works</h2>
+        <h2 data-depth="0.5" id="worksTitle" class="randomized">My Works</h2>
+        <div class="opened__project">
+          <img class="crossIcon" id="crossIcon" src="./images/icons/cross.svg"></img>
+        </div>
       </section>
 
       <section class="skills">
-        <h2 data-depth="0.5">My Skills</h2>
+        <svg class="circle" version="1.1" x="0px" y="0px"
+          width="32.5rem" height="32.5rem" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+          <path id="path" class="path" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" d="M100.416,2.001C154.35,2.225,198,46.015,198,100
+            c0,54.124-43.876,98-98,98S2,154.124,2,100S45.876,2,100,2"/>
+        </svg>
+        <div class="items" data-depth="0.1">
+            <div class="skillsList skillsList__left">
+              <p class="fromBottom">HTML/CSS</p>
+              <p class="fromBottom">JavaScript</p>
+              <p class="fromBottom">WebGL/Three.js</p>
+              <p class="fromBottom">Php</p>
+              <p class="fromBottom">MySQL</p>
+            </div>
+
+            <div class="skillsList skillsList__right">
+                <p class="fromBottom">UX Design</p>
+                <p class="fromBottom">UI Design</p>
+                <p class="fromBottom">Graphism</p>
+                <p class="fromBottom">Motion/Animation</p>
+                <p class="fromBottom">Illustration</p>
+              </div>
+        </div>
+            
+        <h2 data-depth="0.5" id="skillsTitle" class="randomized">My Skills</h2>
       </section>
 
       <section class="about">
-        <h2 data-depth="0.5">Who Am I</h2>
+        <div class="about__content" data-depth="0.2">
+          <div class="photo">
+            <img src="./images/photo/portrait.png"/>
+          </div>
+          <p class="about__text">
+            French student in Web development and UX/UI Design at HETIC, currently living in Paris.<br/>
+            Graphist, Illustrator, Art Director, Game Designer & Creative developer on my free time.<br/>
+            Animation, Motion, and 3D learner.<br/>
+            I also graduated from an English, Chinese & Communication degree, in Taipei.
+          </p>
+        </div>
+        <h2 data-depth="0.5" id="aboutTitle" class="randomized">Who Am I</h2>
+      </section>
+
+      <section class="contact">
+        <p class="contact__text" data-depth="0.2">Want to contact me ?</p>
       </section>
     </main>
-    <footer>
-      <p class="contact">Contact</p>
-    </footer>
+    <footer></footer>
     <div class="border"></div>
+    <div class="loader__text">
+      <p>Welcome</p>
+      <p>You Found my portfolio</p>
+    </div>
   </body>
 </html>

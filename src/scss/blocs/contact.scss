@@ -1,0 +1,10 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .contact__text {
+    text-align: center;
+  }
+}
