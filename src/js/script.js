@@ -9,6 +9,8 @@ import {
   randomize,
   animateSection
 } from "./animations";
+//export {THREE, noiseImage, glowImage, planetTexture, glowTexture} from "./planet";
+//import PlanetScene from "./planet";
 
 //----------------------------------- WINDOW ONLOAD -----------------------------------------//
 
@@ -21,63 +23,19 @@ window.onload = function() {
   initFromBottom();
 
   let parallax = new Parallax(0.3, 0.05);
+  let sinwave = new SinWave("#canvas2D");
+  //let planetScene = new PlanetScene("#canvas3D");
 
-  //let sinwave = new SinWave("#canvas2D");
+  var update = function(){
 
-  //--------------- CANVAS 2D ---------------//
+    sinwave.update();
+    parallax.update();
+    //planetScene.render();
 
-  let canvas2D = document.querySelector("#canvas2D");
-  let ctx = canvas2D.getContext("2d");
-  canvas2D.height = window.innerHeight;
-  canvas2D.width = window.innerWidth;
+    requestAnimationFrame(update);
+  }
 
-  window.addEventListener("resize", () => {
-    canvas2D.height = window.innerHeight;
-    canvas2D.width = window.innerWidth;
-  });
-
-  var waveCounter = 0;
-  var deltaTime = 0;
-  var lastTime = Date.now();
-
-  var canvas2DUpdate = function() {
-    deltaTime = (Date.now() - lastTime) / 1000;
-    lastTime = Date.now();
-
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-    //Animation
-    waveCounter += 0.08 * Math.PI * 2 * deltaTime; //percent(animation speed) * one sin * per second
-
-    //Draw
-    ctx.beginPath();
-    ctx.moveTo(0, window.innerHeight);
-
-    var ratio = window.innerWidth / 1920;
-
-    ctx.strokeStyle = "white";
-    ctx.lineWidth = 350 * ratio;
-
-    var precision = 15;
-    var amplitude = 100 * ratio;
-
-    for (let i = 0; i <= precision; i++) {
-      let sin = Math.sin(waveCounter + (i / precision) * Math.PI * 2);
-      let x = (window.innerWidth / precision) * i + sin * amplitude;
-      let y =
-        (window.innerHeight / precision) * (precision - i) + sin * amplitude;
-
-      ctx.lineTo(x, y);
-    }
-
-    ctx.stroke();
-    ctx.globalAlpha = 0.2; //Note : globalAlpha is for all of the canvas
-    ctx.filter = "blur(40px)";
-
-    requestAnimationFrame(canvas2DUpdate);
-  };
-
-  canvas2DUpdate();
+  update();
 
   //CONTROLLED SCROLL
 
@@ -235,36 +193,43 @@ window.onload = function() {
   render();
 
   setTimeout(function() {
-
-    document.querySelector(".border").style.border = "10px solid lightgrey";
+    let fromBottomElements = document.querySelectorAll('.loader__text .fromBottom');
+    for(let i = 1; i <= fromBottomElements.length; i++){
+      setTimeout(function() {
+        animateFromBottom(".loader__text p:nth-of-type(" + i + ")");
+      }, i * 500);
+    }
 
     setTimeout(function() {
-
+      document.querySelector(".border").style.border = "10px solid lightgrey";
       document.querySelector('.loader__text').style.display = "none";
-
-      //WEBGL ANIMATIONS
-      TweenMax.to(planet.position, 2, {
-        z: 0,
-        ease: Power4.easeOut
-      });
-
-      TweenMax.to(glow.position, 2, {
-        z: 0,
-        ease: Power4.easeOut
-      });
-
-      TweenMax.to(horizontalGrid.position, 2, {
-        y: -5,
-        delay: 1,
-        ease: Power4.easeOut
-      });
-
-      //FIRST SECTION
+  
       setTimeout(function() {
-        animateSection(0);
-      }, 1000);
-    }, 400);
-  }, 3000);
+        //WEBGL ANIMATIONS
+        TweenMax.to(planet.position, 2, {
+          z: 0,
+          ease: Power4.easeOut
+        });
+  
+        TweenMax.to(glow.position, 2, {
+          z: 0,
+          ease: Power4.easeOut
+        });
+  
+        TweenMax.to(horizontalGrid.position, 2, {
+          y: -5,
+          delay: 1,
+          ease: Power4.easeOut
+        });
+  
+        //FIRST SECTION
+        setTimeout(function() {
+          animateSection(0);
+        }, 1000);
+      }, 400);
+    }, 3000);
+
+  }, 0);
 
   var projectList = document.querySelectorAll("#project");
   var openedProject = document.querySelector('.opened__project');

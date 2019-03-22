@@ -27,19 +27,36 @@
   </head>
   <body>
     <canvas class="canvas2D" id="canvas2D"></canvas>
+    <div class="particles" id="particles"></div>
     <div class="colorFilter"></div>
     <header>
-      <a href="index.html"
-        ><img alt="logo" src="./images/content/logo.svg" class="logo"
-      /></a>
+      <a href="index.html">
+          <svg class="logo" viewBox="0 0 205.43 399.31"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linejoin:round;stroke-width:5px;}</style></defs>          
+            <g class="face">
+          <polyline class="cls-1" points="2.5 95.79 2.5 373.83 43.86 350.86 44.12 257.41 122.25 211.45 123.1 304.73 164.29 280.9 164.29 2.5 2.5 95.79"/>
+          <polyline class="cls-1" points="42.59 119.54 123.27 73.07 123.27 166.51 42.59 211.45 42.59 119.54"/></g>        
+            <g class="bottom">
+              <polygon id="dessous-2" data-name="dessous" class="cls-1" points="2.5 373.83 42.59 396.81 83.39 373.83 43.86 350.86 2.5 373.83"/>
+              <polygon id="dessous-3" data-name="dessous" class="cls-1" points="123.1 304.73 164.29 327.37 202.93 304.73 164.29 280.9 123.1 304.73"/>
+              <polygon id="dessous-4" data-name="dessous" class="cls-1" points="2.5 95.79 42.59 119.54 202.93 25.32 164.29 2.5 2.5 95.79"/>
+              <polyline class="cls-1" points="42.59 211.45 123.27 166.51 164.29 188.17 82.93 234.58 42.59 211.45"/>
+              <polyline class="cls-1" points="42.59 119.54 83.39 142.26 164.29 96.56 123.27 73.07 42.59 119.54"/>
+              <polygon class="cls-1" points="44.12 257.41 82.93 280.9 164.29 234.58 122.25 211.45 44.12 257.41"/></g>
+            <g class="side">
+              <polygon class="cls-1" points="83.39 142.26 82.93 234.58 42.59 211.45 42.59 119.54 83.39 142.26"/>
+              <polygon class="cls-1" points="44.12 257.41 82.93 280.9 83.39 373.83 43.86 350.86 44.12 257.41"/>
+              <polygon id="longest" class="cls-1" points="164.29 2.5 202.93 25.32 202.93 304.73 164.29 280.9 164.29 2.5"/>
+              <polygon class="cls-1" points="123.27 73.07 164.29 96.56 164.29 188.17 123.27 166.51 123.27 73.07"/>
+              <polygon class="cls-1" points="122.25 211.45 123.1 304.73 164.29 327.37 164.29 234.58 122.25 211.45"/></g></svg>
+      </a>
     </header>
     <nav class="leftNav">
       <ul>
-        <li>一</li>
-        <li>二</li>
-        <li>三</li>
-        <li>四</li>
-        <li>五</li>
+        <li>一<span>Intro</span></li>
+        <li>二<span>Works</span></li>
+        <li>三<span>Skills</span></li>
+        <li>四<span>About</span></li>
+        <li>五<span>Contact</span></li>
       </ul>
     </nav>
     <nav class="rightNav">
@@ -53,18 +70,20 @@
     <main id="main">
       <section class="landing">
         <div class="landing__content" data-depth="0.2">
-          <p class="landing__el fromBottom">Hello</p>
-          <p class="landing__el fromBottom">I'm</p>
+          <p class="fromBottom">Hello</p>
+          <p class="fromBottom">°</p>
+          <p class="fromBottom">I'm</p>
           <h1 id="name" class="landing__el randomized">Amandine Donat-Filliod</h1>
-          <p class="landing__el fromBottom">UX/UI Designer • Front Developer • Graphist</p>
+          <p class="fromBottom">UX/UI Designer • Front Developer • Graphist</p>
         </div>
+        <div class="scrollIcon"></div>
       </section>
 
       <section class="works">
         <div class="projects" id="projects" data-depth="0.2">
           <div id="project">
             <h3>Uryō</h3>
-            <img src="images/gif/uryo.gif" />
+            <!--<img src="images/gif/uryo.gif" />-->
           </div>
           <div id="project">
             <h3>Adpot'un Heticien</h3>
@@ -136,11 +155,31 @@
         <p class="contact__text" data-depth="0.2">Want to contact me ?</p>
       </section>
     </main>
-    <footer></footer>
+    <footer>
+      <p>© • 2019 • Amandine Donat-Filliod</p>
+    </footer>
     <div class="border"></div>
     <div class="loader__text">
-      <p>Welcome</p>
-      <p>You Found my portfolio</p>
+        <svg viewBox="0 0 205.43 399.31"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linejoin:round;stroke-width:5px;}</style></defs>          
+          <g class="face">
+        <polyline class="cls-1" points="2.5 95.79 2.5 373.83 43.86 350.86 44.12 257.41 122.25 211.45 123.1 304.73 164.29 280.9 164.29 2.5 2.5 95.79"/>
+        <polyline class="cls-1" points="42.59 119.54 123.27 73.07 123.27 166.51 42.59 211.45 42.59 119.54"/></g>        
+          <g class="bottom">
+            <polygon id="dessous-2" data-name="dessous" class="cls-1" points="2.5 373.83 42.59 396.81 83.39 373.83 43.86 350.86 2.5 373.83"/>
+            <polygon id="dessous-3" data-name="dessous" class="cls-1" points="123.1 304.73 164.29 327.37 202.93 304.73 164.29 280.9 123.1 304.73"/>
+            <polygon id="dessous-4" data-name="dessous" class="cls-1" points="2.5 95.79 42.59 119.54 202.93 25.32 164.29 2.5 2.5 95.79"/>
+            <polyline class="cls-1" points="42.59 211.45 123.27 166.51 164.29 188.17 82.93 234.58 42.59 211.45"/>
+            <polyline class="cls-1" points="42.59 119.54 83.39 142.26 164.29 96.56 123.27 73.07 42.59 119.54"/>
+            <polygon class="cls-1" points="44.12 257.41 82.93 280.9 164.29 234.58 122.25 211.45 44.12 257.41"/></g>
+          <g class="side">
+            <polygon class="cls-1" points="83.39 142.26 82.93 234.58 42.59 211.45 42.59 119.54 83.39 142.26"/>
+            <polygon class="cls-1" points="44.12 257.41 82.93 280.9 83.39 373.83 43.86 350.86 44.12 257.41"/>
+            <polygon id="longest" class="cls-1" points="164.29 2.5 202.93 25.32 202.93 304.73 164.29 280.9 164.29 2.5"/>
+            <polygon class="cls-1" points="123.27 73.07 164.29 96.56 164.29 188.17 123.27 166.51 123.27 73.07"/>
+            <polygon class="cls-1" points="122.25 211.45 123.1 304.73 164.29 327.37 164.29 234.58 122.25 211.45"/></g></svg>
+      <p class="fromBottom">Welcome</p>
+      <p class="fromBottom">°</p>
+      <p class="fromBottom">You found my portfolio.</p>
     </div>
   </body>
 </html>

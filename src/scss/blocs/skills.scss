@@ -9,7 +9,7 @@
     .path {
       stroke-dasharray: 620;
       stroke-dashoffset: 620;
-      transition: all 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .offset {
@@ -56,11 +56,5 @@
     p:nth-child(2), p:nth-child(4){
       transform: translateX(-20%);
     }
-  }
-
-  h2 {
-    position: absolute;
-    top: 80%;
-    left: 10%;
   }
 }

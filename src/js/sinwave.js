@@ -6,16 +6,16 @@ class SinWave{
         this.DOMElement.height = window.innerHeight;
         this.DOMElement.width = window.innerWidth;
 
-        window.onresize = function() {
+        window.addEventListener('resize', ()=>{
             this.DOMElement.height = window.innerHeight;
             this.DOMElement.width = window.innerWidth;
-        }
+        });
 
         this.waveCounter = 0;
         this.deltaTime = 0;
         this.lastTime = Date.now();
 
-        this.update();
+        //this.update();
     }
 
     update() {
@@ -34,8 +34,7 @@ class SinWave{
         //STYLE
         this.ratio = window.innerWidth / 1920;
         this.ctx.strokeStyle = "white";
-        this.ctx.lineWitdh = 350 * this.ratio;
-
+        this.ctx.lineWidth = 350 * this.ratio;
         this.ctx.globalAlpha = 0.2; //Note : globalAlpha is for all of the canvas
         this.ctx.filter = "blur(40px)";
 
@@ -47,15 +46,12 @@ class SinWave{
             let sin = Math.sin(this.waveCounter + (i / this.precision) * Math.PI * 2);
             let x = (window.innerWidth / this.precision) * i + sin * this.amplitude;
             let y = (window.innerHeight / this.precision) * (this.precision - i) + sin * this.amplitude;
-
             this.ctx.lineTo(x, y);
         }
 
         this.ctx.stroke();
 
-        console.log('coucou');
-
-        requestAnimationFrame(() => { this.update(); });
+        //requestAnimationFrame(() => { this.update(); });
         //requestAnimationFrame(this.update);
     }
 }

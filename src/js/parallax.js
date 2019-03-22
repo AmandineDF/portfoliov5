@@ -20,7 +20,7 @@ class Parallax {
       };
     });
 
-    this.update();
+    //this.update();
   }
 
   getMovement() {
@@ -49,7 +49,7 @@ class Parallax {
         force3D: true
       });
     });
-    requestAnimationFrame(() => { this.update(); });
+    //requestAnimationFrame(() => { this.update(); });
   }
 }
 

@@ -1,9 +1,4 @@
-@font-face {
-  font-family: "Gotham";
-  src: url("fonts/GothamMedium_0.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,700,900');
 
 body {
   background: url(../images/texture/noise.png) /*black rgb(25, 23, 26)*/;
@@ -11,8 +6,10 @@ body {
   background-repeat: repeat;
   background-attachment: fixed;
   color: white;
-  font-family: "Gotham";
-  /*cursor: crosshair;*/
+}
+
+body * {
+  font-family: 'Raleway', sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -44,15 +41,58 @@ body {
   justify-content: center;
   align-items: center;
 
-  p{
-    text-transform: uppercase;
+  svg{
+    height: 10vh;
 
-    &:nth-child(1){
-      font-size: 5rem;
+    .face polyline {
+      stroke-dasharray: 350;
+      stroke-dashoffset: 350;
+      animation: lineAnimation 2s linear infinite;
     }
 
-    &:nth-child(2){
-      font-size: 2rem;
+    .bottom polygon {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: lineAnimation 2s linear infinite;
+    }
+
+    .bottom polyline {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: lineAnimation 2s linear infinite;
+    }
+
+    .side polygon {
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      animation: lineAnimation 2s linear infinite;
+    }
+
+    .side .polygon--longest {
+      stroke-dasharray: 350;
+      stroke-dashoffset: 350;
+      animation: lineAnimation 2s linear infinite;
+    }
+
+    @keyframes lineAnimation{
+      to{
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+
+  p{    
+
+    &:nth-of-type(1) span{
+      font-size: 6rem;
+      font-weight: 700;
+      letter-spacing: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    &:nth-of-type(2) span, &:nth-of-type(3) span{
+      font-size: 1rem;
+      font-style: italic;
     }
   }
 }
@@ -72,7 +112,6 @@ canvas {
 
   position: absolute;
   top: 0;
-  z-index: -10;
 }
 
 .canvas2D {

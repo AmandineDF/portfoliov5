@@ -85,9 +85,9 @@ var animateSection = function(index) {
   //FIRST SECTION
   if (index == 0) {
     let fromBottomElements = document.querySelectorAll('.landing .fromBottom');
-    for(let i = 0; i < fromBottomElements.length; i++){
+    for(let i = 1; i <= fromBottomElements.length; i++){
       setTimeout(function() {
-        animateFromBottom(".landing p:nth-of-type(" + (i+1) + ")");
+        animateFromBottom(".landing p:nth-of-type(" + i + ")");
       }, i * 50);
     }
 
@@ -103,11 +103,16 @@ var animateSection = function(index) {
   //THIRD SECTION
   } else if (index == 2) {
     randomize("#skillsTitle");
+
+    
     document.querySelector('.circle .path').classList.add("offset");
     
-    setTimeout(function() {
-      animateFromBottom(".items p");
-    }, 1000);
+    let fromBottomElements = document.querySelectorAll('.items p');
+    for(let i = fromBottomElements.length; i > 0; i--){
+      setTimeout(function() {
+        animateFromBottom(".items p:nth-of-type(" + i + ")");
+      }, i*300 + 1000);
+    }
 
   //FOURTH SECTION
   } else if (index == 3) {
