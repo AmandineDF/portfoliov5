@@ -26,7 +26,14 @@ var initRandomize = function() {
 
 //FROMBOTTOM ANIMATION
 var animateFromBottom = function(selector, delay) {
-  var letters = document.querySelectorAll(selector + " span");
+  var element = selector;
+  if(typeof(selector) == "string"){
+    element = document.querySelector(selector);
+  }
+  
+  element.style.opacity = 1;
+
+  var letters = element.querySelectorAll("span");
   setTimeout(function() {
     for (let i = 0; i < letters.length; i++) {
       setTimeout(function() {
@@ -60,7 +67,7 @@ var randomize = function(selector) {
 
     if (currentIndex < text.length) {
       currentIndex++;
-      setTimeout(updateRandomize, 60);
+      setTimeout(updateRandomize, 30);
     } else {
       currentIndex = 0;
     }
@@ -81,19 +88,41 @@ var animateSection = function(index) {
   document.querySelectorAll(".fromBottom span").forEach(function(element) {
     element.classList.remove("appeared");
   });
+  document.querySelectorAll('.leftNav li')[0].classList.remove('menuTracker');
+
+  var lis = document.querySelectorAll('.leftNav li');
+  for(let i = 0; i < lis.length; i++) {
+    let li = lis[i];
+    
+    if( i == index){
+      li.classList.add('menuTracker');
+    } else {
+      li.classList.remove('menuTracker');
+    }
+  }
 
   //FIRST SECTION
   if (index == 0) {
     let fromBottomElements = document.querySelectorAll('.landing .fromBottom');
-    for(let i = 1; i <= fromBottomElements.length; i++){
+    for(let i = 0; i < fromBottomElements.length-1;i++){
       setTimeout(function() {
-        animateFromBottom(".landing p:nth-of-type(" + i + ")");
+        animateFromBottom(fromBottomElements[i]);
       }, i * 50);
     }
 
     setTimeout(function() {
       randomize("#name");
-    }, 100);
+    }, 1000);
+
+    setTimeout(function() {
+      animateFromBottom(".landing p:nth-of-type(4)");
+    }, 2800);
+
+    setTimeout(function() {
+      document.querySelector('.scrollIcon').classList.add('appeared');
+    }, 3500);
+
+
 
   //SECOND SECTION
   } else if (index == 1) {
@@ -107,16 +136,29 @@ var animateSection = function(index) {
     
     document.querySelector('.circle .path').classList.add("offset");
     
-    let fromBottomElements = document.querySelectorAll('.items p');
-    for(let i = fromBottomElements.length; i > 0; i--){
+    let leftElements = document.querySelectorAll('.skillsList__left p');
+    for(let i = leftElements.length - 1; i >= 0; i--){
       setTimeout(function() {
-        animateFromBottom(".items p:nth-of-type(" + i + ")");
+        animateFromBottom(leftElements[i]);
       }, i*300 + 1000);
     }
+
+    let rightElements = document.querySelectorAll('.skillsList__right p');
+    for(let i = 0; i < rightElements.length; i++){
+      setTimeout(function() {
+        animateFromBottom(rightElements[i]);
+      }, i*300 + 1000);
+    }
+    
+    //FAIRE 2 for gauche et droite
 
   //FOURTH SECTION
   } else if (index == 3) {
     randomize("#aboutTitle");
+
+  //FIFTH SECTION
+  } else if (index == 4) {
+    randomize('#question');
   }
 };
 

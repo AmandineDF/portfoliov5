@@ -13,11 +13,11 @@ import {
 //import PlanetScene from "./planet";
 
 //----------------------------------- WINDOW ONLOAD -----------------------------------------//
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
 
 window.onload = function() {
-  TweenMax.set(window, {
-    scrollTo: 0
-  });
 
   initRandomize();
   initFromBottom();
@@ -25,12 +25,18 @@ window.onload = function() {
   let parallax = new Parallax(0.3, 0.05);
   let sinwave = new SinWave("#canvas2D");
   //let planetScene = new PlanetScene("#canvas3D");
+  //let cursor = {x: 0, y: 0};
 
   var update = function(){
 
     sinwave.update();
     parallax.update();
     //planetScene.render();
+
+    /*cursor.x += (parallax.mouse.x - cursor.x) * 0.3;
+    cursor.y += (parallax.mouse.y - cursor.y) * 0.3;
+    
+    TweenMax.set('#cursor',{x: cursor.x - 15, y: cursor.y - 15, force3D:true });*/
 
     requestAnimationFrame(update);
   }
@@ -45,7 +51,7 @@ window.onload = function() {
   var changeIndex = function(index) {
     if (canScroll) {
       canScroll = false;
-
+ 
       var selector = "section:nth-child(" + (currentIndex + 1) + ")";
 
       if (index <= 4 && index >= 0 && index != currentIndex) {
@@ -55,18 +61,16 @@ window.onload = function() {
         return;
       }
 
-      console.log(index);
-
       TweenMax.to(selector, 0.4, {
         opacity: 0
-      });
-
+      })
+      
       setTimeout(() => {
         canScroll = true;
       }, 2000);
 
-      TweenMax.set("section:nth-child(" + (currentIndex + 1) + ")", {
-        opacity: 1
+      TweenMax.to("section:nth-child(" + (currentIndex + 1) + ")", 0.2, {
+        opacity: 1,
       });
 
       TweenMax.to(window, 0.8, {
@@ -91,6 +95,18 @@ window.onload = function() {
   window.onwheel = function(e) {
     e.preventDefault();
     changeIndex(currentIndex + Math.sign(e.deltaY));
+
+    if(Math.sign(e.deltaY) == 1) {
+      document.getElementById('downBtn').classList.add('triggered');
+      setTimeout(() => {
+        document.getElementById('downBtn').classList.remove('triggered');
+      }, 500);
+    } else {
+      document.getElementById('upBtn').classList.add('triggered');
+      setTimeout(() => {
+        document.getElementById('upBtn').classList.remove('triggered');
+      }, 500);
+    }
   };
 
   var leftNav = document.querySelectorAll('.leftNav li');
@@ -138,7 +154,7 @@ window.onload = function() {
   var ambientLight = new THREE.AmbientLight(0x19171a);
   //scene.add(ambientLight);
 
-  var light = new THREE.PointLight(0xffe0e0, 3, 100);
+  var light = new THREE.PointLight(0xffe0e0, 4, 100);
   light.position.set(0, 15, 2);
   scene.add(light);
 
@@ -155,7 +171,7 @@ window.onload = function() {
 
   var planet = new THREE.Mesh(planetGeometry, planetMaterial);
   planet.rotation.z += 90;
-  planet.position.z = -20;
+  planet.position.z = -60;
   scene.add(planet);
 
   //GLOW
@@ -168,7 +184,7 @@ window.onload = function() {
 
   var glow = new THREE.Mesh(glowGeometry, glowMaterial);
   glow.position.y = 0.8;
-  glow.position.z = -20;
+  glow.position.z = -60;
   scene.add(glow);
 
   //GRID
@@ -227,24 +243,86 @@ window.onload = function() {
           animateSection(0);
         }, 1000);
       }, 400);
-    }, 3000);
+    }, 4000);
 
-  }, 0);
-
-  var projectList = document.querySelectorAll("#project");
-  var openedProject = document.querySelector('.opened__project');
-  for (let i = 0; i < projectList.length; i++) {
-    var project = projectList[i];
-
-    project.addEventListener("click", function() {
-      openedProject.classList.add('clicked');
-      canScroll = false;
-    });
-  }
+  }, 500);
 
   var crossIcon = document.getElementById('crossIcon');
-  crossIcon.addEventListener('click', function() {
-    openedProject.classList.remove('clicked');
+
+  var uryoMini = document.querySelector('#uryo');
+  var uryoProject = document.querySelector('.uryo');
+  uryoMini.addEventListener("click", function(){
+    uryoProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  var easyjetMini = document.querySelector('#easyjet');
+  var easyjetProject = document.querySelector('.easyjet');
+  easyjetMini.addEventListener("click", function(){
+    easyjetProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  var nespressoMini = document.querySelector('#nespresso');
+  var nespressoProject = document.querySelector('.nespresso');
+  nespressoMini.addEventListener("click", function(){
+    nespressoProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  var o2dieMini = document.querySelector('#o2die');
+  var o2dieProject = document.querySelector('.o2die');
+  o2dieMini.addEventListener("click", function(){
+    o2dieProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  var butellaMini = document.querySelector('#butellaForest');
+  var butellaProject = document.querySelector('.butellaForest');
+  butellaMini.addEventListener("click", function(){
+    butellaProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  var sphinxMini = document.querySelector('#theSphinx');
+  var sphinxProject = document.querySelector('.theSphinx');
+  sphinxMini.addEventListener("click", function(){
+    sphinxProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  var insideMini = document.querySelector('#insideOfUs');
+  var insideProject = document.querySelector('.insideOfUs');
+  insideMini.addEventListener("click", function(){
+    insideProject.classList.add('clicked');
+    crossIcon.classList.add('active');
+    canScroll = false;
+  });
+
+  crossIcon.addEventListener('click', function(){
+    var projectList = document.querySelectorAll(".opened__project");
+    projectList.forEach(function(element){
+      element.classList.remove('clicked');
+    });
+    this.classList.remove('active');
     canScroll = true;
   });
+
+  var styles = [
+    'background: lightslategrey'
+    , 'color: white'
+    , 'display: block'
+    , 'padding: 1rem 0.5rem'
+    , 'text-align: center'
+    , 'font-weight: bold'
+    , 'font-size: 1.5rem'
+  ].join(';');
+
+  console.log('%c Hello Curious John', styles);
 };

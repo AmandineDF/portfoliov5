@@ -1,6 +1,6 @@
 .about {
     .about__content {
-      position: absolute;
+      position: relative;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -14,15 +14,20 @@
       .photo {
         height: 100%;
         width: 45%;
+        position: absolute;
   
         img {
           height: 100%;
+          opacity: 0.9;
         }
       }
   
       .about__text {
-        height: 100%;
         width: 45%;
+        position: absolute;
+        top: 25%;
+        right: 0;
+        line-height: 2;
       }
     }
   
