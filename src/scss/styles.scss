@@ -1,57 +1,18 @@
 @import "vendors/reset.scss";
-/*@import 'vendors/library';
 
 @import 'config/anim.scss';
-@import 'config/medias.scss';
-@import 'config/colors.scss';
 @import 'config/fonts';
-@import 'config/mixin.scss';
+@import 'config/colors.scss';
+/*@import 'config/medias.scss';
+@import 'config/mixin.scss';*/
 
 @import 'global/layout.scss';
-@import 'global/typography.scss';*/
+@import 'global/typography.scss';
 @import "global/interface.scss";
 
-@import "blocs/header.scss";
-@import "blocs/landing.scss";
+@import "blocs/panel.scss";
+@import "blocs/intro.scss";
 @import "blocs/works.scss";
 @import "blocs/skills.scss";
 @import "blocs/about.scss";
 @import "blocs/contact.scss";
-@import "blocs/footer.scss";
-
-.fromBottom {
-  overflow: hidden;
-  margin: 0;
-  opacity: 0;
-
-  span {
-    display: inline-block;
-    transform: translateY(100px);
-    white-space: pre;
-    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  span.appeared {
-    transform: translateY(0px);
-  }
-}
-
-main {
-  height: 100%;
-  width: 100%;
-
-  section {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-
-    h2 {
-      font-size: 3.5rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      position: absolute;
-      top: 80%;
-      left: 10%;
-    }
-  }
-}

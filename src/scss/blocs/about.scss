@@ -11,15 +11,10 @@
       height: 70%;
       width: 70%;
   
-      .photo {
+      .about__photo {
         height: 100%;
-        width: 45%;
+        opacity: 0.9;
         position: absolute;
-  
-        img {
-          height: 100%;
-          opacity: 0.9;
-        }
       }
   
       .about__text {

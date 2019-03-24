@@ -4,52 +4,41 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Amandine Donat-Filliod Portfolio</title>
-    <meta
-      name="description"
-      content="Portfolio d'Amandine Donat-Filliod, étudiante en développement web."
-    />
+    <meta name="description" content="Portfolio d'Amandine Donat-Filliod, étudiante en développement web et web design." />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="scss/styles.scss"
-    />
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"
-    ></script>
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/plugins/ScrollToPlugin.min.js"
-    ></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="scss/styles.scss" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/plugins/ScrollToPlugin.min.js"></script>
     <script defer src="js/script.js"></script>
   </head>
+
   <body>
-    <canvas class="canvas2D" id="canvas2D"></canvas>
-    <div class="particles" id="particles"></div>
-    <div class="colorFilter"></div>
+
     <header>
       <a href="index.html">
-          <svg class="logo" viewBox="0 0 205.43 399.31"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linejoin:round;stroke-width:5px;}</style></defs>          
-            <g class="face">
-          <polyline class="cls-1" points="2.5 95.79 2.5 373.83 43.86 350.86 44.12 257.41 122.25 211.45 123.1 304.73 164.29 280.9 164.29 2.5 2.5 95.79"/>
-          <polyline class="cls-1" points="42.59 119.54 123.27 73.07 123.27 166.51 42.59 211.45 42.59 119.54"/></g>        
-            <g class="bottom">
-              <polygon id="dessous-2" data-name="dessous" class="cls-1" points="2.5 373.83 42.59 396.81 83.39 373.83 43.86 350.86 2.5 373.83"/>
-              <polygon id="dessous-3" data-name="dessous" class="cls-1" points="123.1 304.73 164.29 327.37 202.93 304.73 164.29 280.9 123.1 304.73"/>
-              <polygon id="dessous-4" data-name="dessous" class="cls-1" points="2.5 95.79 42.59 119.54 202.93 25.32 164.29 2.5 2.5 95.79"/>
-              <polyline class="cls-1" points="42.59 211.45 123.27 166.51 164.29 188.17 82.93 234.58 42.59 211.45"/>
-              <polyline class="cls-1" points="42.59 119.54 83.39 142.26 164.29 96.56 123.27 73.07 42.59 119.54"/>
-              <polygon class="cls-1" points="44.12 257.41 82.93 280.9 164.29 234.58 122.25 211.45 44.12 257.41"/></g>
-            <g class="side">
-              <polygon class="cls-1" points="83.39 142.26 82.93 234.58 42.59 211.45 42.59 119.54 83.39 142.26"/>
-              <polygon class="cls-1" points="44.12 257.41 82.93 280.9 83.39 373.83 43.86 350.86 44.12 257.41"/>
-              <polygon id="longest" class="cls-1" points="164.29 2.5 202.93 25.32 202.93 304.73 164.29 280.9 164.29 2.5"/>
-              <polygon class="cls-1" points="123.27 73.07 164.29 96.56 164.29 188.17 123.27 166.51 123.27 73.07"/>
-              <polygon class="cls-1" points="122.25 211.45 123.1 304.73 164.29 327.37 164.29 234.58 122.25 211.45"/></g></svg>
+        <svg class="logo" viewBox="0 0 205.43 399.31"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linejoin:round;stroke-width:5px;}</style></defs>          
+          <g class="face">
+            <polyline class="cls-1" points="2.5 95.79 2.5 373.83 43.86 350.86 44.12 257.41 122.25 211.45 123.1 304.73 164.29 280.9 164.29 2.5 2.5 95.79"/>
+            <polyline class="cls-1" points="42.59 119.54 123.27 73.07 123.27 166.51 42.59 211.45 42.59 119.54"/>
+          </g>        
+          <g class="bottom">
+            <polygon id="dessous-2" data-name="dessous" class="cls-1" points="2.5 373.83 42.59 396.81 83.39 373.83 43.86 350.86 2.5 373.83"/>
+            <polygon id="dessous-3" data-name="dessous" class="cls-1" points="123.1 304.73 164.29 327.37 202.93 304.73 164.29 280.9 123.1 304.73"/>
+            <polygon id="dessous-4" data-name="dessous" class="cls-1" points="2.5 95.79 42.59 119.54 202.93 25.32 164.29 2.5 2.5 95.79"/>
+            <polyline class="cls-1" points="42.59 211.45 123.27 166.51 164.29 188.17 82.93 234.58 42.59 211.45"/>
+            <polyline class="cls-1" points="42.59 119.54 83.39 142.26 164.29 96.56 123.27 73.07 42.59 119.54"/>
+            <polygon class="cls-1" points="44.12 257.41 82.93 280.9 164.29 234.58 122.25 211.45 44.12 257.41"/>
+          </g>
+          <g class="side">
+            <polygon class="cls-1" points="83.39 142.26 82.93 234.58 42.59 211.45 42.59 119.54 83.39 142.26"/>
+            <polygon class="cls-1" points="44.12 257.41 82.93 280.9 83.39 373.83 43.86 350.86 44.12 257.41"/>
+            <polygon id="longest" class="cls-1" points="164.29 2.5 202.93 25.32 202.93 304.73 164.29 280.9 164.29 2.5"/>
+            <polygon class="cls-1" points="123.27 73.07 164.29 96.56 164.29 188.17 123.27 166.51 123.27 73.07"/>
+            <polygon class="cls-1" points="122.25 211.45 123.1 304.73 164.29 327.37 164.29 234.58 122.25 211.45"/>
+          </g>
+        </svg>
       </a>
     </header>
+
     <nav class="leftNav">
       <ul>
         <li>一<span>Intro</span></li>
@@ -59,26 +48,26 @@
         <li>五<span>Contact</span></li>
       </ul>
     </nav>
+
     <nav class="rightNav">
       <ul>
         <li class="upBtn" id="upBtn"><img src="./images/icons/arrow.svg" /></li>
-        <li class="downBtn" id="downBtn">
-          <img src="./images/icons/arrow.svg" />
-        </li>
+        <li class="downBtn" id="downBtn"><img src="./images/icons/arrow.svg" /></li>
       </ul>
     </nav>
+
     <main id="main">
-      <section class="landing">
-        <div class="landing__content" data-depth="0.2">
+      <section class="intro">
+        <div class="intro__text" data-depth="0.2">
           <p class="fromBottom">Hello</p>
           <p class="fromBottom">°</p>
           <p class="fromBottom">I'm</p>
-          <h1 id="name" class="landing__el randomized">Amandine Donat-Filliod</h1>
+          <h1 class="randomized" id="name">Amandine Donat-Filliod</h1>
           <p class="fromBottom">UX/UI Designer  •  Front Developer  •  Graphist</p>
         </div>
         <div class="scrollIcon">
           <p>Scroll</p>
-          <div></div>
+          <div class="scrollIcon__icon"></div>
         </div>
       </section>
 
@@ -105,17 +94,14 @@
             <h3>Butella Forest<span>Development</span></h3>
             <img src="images/gif/butellaforest.gif" />
           </div>
-
           <div id="theSphinx">
             <h3>The Sphinx<span>Art</span></h3>
             <img src="images/projects/thesphinx.jpg" />
           </div>
-          
           <div id="insideOfUs">
             <h3>Inside Of Us<span>Art</span></h3>
             <img src="images/projects/insideofus.jpg" />
           </div>
-          
           <div id="taiwan">
             <h3>One year in Taiwan<span>Video (Coming soon)</span></h3>
             <img src="images/gif/taiwan.gif" />
@@ -125,81 +111,104 @@
         <h2 data-depth="0.5" id="worksTitle" class="randomized">My Works</h2>
 
         <div class="opened__project uryo">
-          <div class="text">
-              <img class="logo" src="images/projects/uryo_logo.png">
-              <h4>Branding & Design</h4>
-            <p class="description">During an intensive week of Design, each team had to create an "Unique" fashion brand. Our team created 雨量Uryō, a raincoat brand based on thermochromatic inks, which allows the coat to change its color when it will be in contact with raindrops. As the Lead Designer, I worked on the wireframes provided by other members of my team to design the graphic models of the homepage and product pages. I wanted that the brand's graphic identity blends in well with the environment that inspired its creation : the futuristic cities of Hong Kong, Taipei, Seoul and Tokyo.</p>
-              <ul>
-                <li>Figma</li>
-                <li>Photshop</li>
-                <li>Adobe Dimension</li>
-                <li>Blender</li>
-              </ul>
+          <div class="opened__project__text">
+            <img class="opened__project__logo" src="images/projects/uryo_logo.png">
+            <h4>Branding & Design</h4>
+            <p class="opened__project__description">During Hetic's intensive week of Design, each team had to create an "Unique"
+            fashion brand. Our team created 雨量Uryō, a raincoat brand based on thermochromatic inks, which
+            allows the coat to change its color when it will be in contact with raindrops. As the Lead Designer,
+            I worked on the wireframes provided by other members of my team to design the graphic models of the
+            homepage and product pages. I wanted that the brand's graphic identity blends in well with the
+            environment that inspired its creation : the futuristic cities of Hong Kong, Taipei, Seoul and Tokyo.</p>
+            <ul class="opened__project__tools">
+              <li>Figma</li>
+              <li>Photshop</li>
+              <li>Adobe Dimension</li>
+              <li>Blender</li>
+              <li>WebGL/Three.js</li>
+            </ul>
           </div>
-          <div class="assets">
+          <div class="opened__project__links">
             <a target="new" href="https://www.figma.com/file/fdrmyUaUHj1VmKbazfpTEpvZ/Uryo?node-id=85%3A43">Moodboard, Wireframes & Prototypes</a>
             <a target="new" href="https://uryo.netlify.com/#header">Homepage Prototype</a>
           </div>
-          <img class="homepage" src="images/projects/uryo_homepage.png">
+          <img class="opened__project__asset" src="images/projects/uryo_homepage.png">
         </div>
 
         <div class="opened__project easyjet">
-          <div class="text">
-              <img class="logo" src="images/projects/easyjet_logo.png">
-              <h4>Redesign</h4>
-            <p class="description">For this redesign of the already existing EasyJet website, the challenge was to modernize and reorganize the user experience and interface, while staying as close as possible to the original brand's graphic identity. I decided to opt for Material Design, since the website needs to look more like the booking app.</p>
-              <ul>
-                <li>Figma</li>
-              </ul>
+          <div class="opened__project__text">
+            <img class="opened__project__logo" src="images/projects/easyjet_logo.png">
+            <h4>Redesign</h4>
+            <p class="opened__project__description">For this redesign of the already existing EasyJet website, the challenge was
+            to modernize and reorganize the user experience and interface, while staying as close as possible to the original brand's
+            graphic identity. I decided to opt for Material Design, since the website needs to look more like the booking app.</p>
+            <ul class="opened__project__tools">
+              <li>Figma</li>
+            </ul>
           </div>
-          <div class="assets">
-            <a target="new" href="https://www.figma.com/file/fdrmyUaUHj1VmKbazfpTEpvZ/Uryo?node-id=85%3A43">Moodboard, Wireframes & Prototypes</a>
-            <a target="new" href="https://uryo.netlify.com/#header">Homepage Prototype</a>
+          <div class="opened__project__links">
+            <a target="new" href="https://www.figma.com/file/XpA75xcQiwxfrYAWBj2lIYQ9/EasyJet?node-id=0%3A1">Wireframe & Prototype</a>
           </div>
-          <img class="homepage" src="images/projects/easyjet_homepage.png">
+          <img class="opened__project__asset" src="images/projects/easyjet_homepage.png">
         </div>
 
         <div class="opened__project nespresso">
-          <div class="text">
-              <img class="logo" src="images/projects/nespresso_logo.png">
-              <h4>Redesign</h4>
-            <p class="description">For this redesign of the already existing EasyJet website, the challenge was to modernize and reorganize the user experience and interface, while staying as close as possible to the original brand's graphic identity. I decided to opt for Material Design, since the website needs to look more like the booking app.</p>
-              <ul>
-                <li>Figma</li>
-              </ul>
+          <div class="opened__project__text">
+            <img class="opened__project__logo" src="images/projects/nespresso_logo.png">
+            <h4>Redesign</h4>
+            <p class="opened__project__description">Nespresso is the first redesign I did, in Hetic. The aim was to identify
+            Nespresso's graphic identity and targeted costumers, so that it can help us to rethink the website's homepage. I wanted
+            to follow Nespresso's luxuous identity, as well as putting the accent on their ethics, and their taste for exostism.</p>
+            <ul class="opened__project__tools">
+              <li>Figma</li>
+            </ul>
           </div>
-          <div class="assets">
-            <a target="new" href="https://www.figma.com/file/fdrmyUaUHj1VmKbazfpTEpvZ/Uryo?node-id=85%3A43">Moodboard, Wireframes & Prototypes</a>
-            <a target="new" href="https://uryo.netlify.com/#header">Homepage Prototype</a>
+          <div class="opened__project__links">
+            <a target="new" href="https://www.figma.com/file/YfsT2pGvkTkskVKEgJk5XdOk/Nespresso?node-id=1%3A2">Prototype</a>
           </div>
-          <img class="homepage" src="images/projects/nespresso_homepage.png">
+          <img class="opened__project__asset" src="images/projects/nespresso_homepage.png">
         </div>
 
         <div class="opened__project o2die">
-          <div class="text">
-              <img class="logo" src="images/projects/o2die_logo.png">
-              <h4>Graphism & Game Design</h4>
-            <p class="description">For this redesign of the already existing EasyJet website, the challenge was to modernize and reorganize the user experience and interface, while staying as close as possible to the original brand's graphic identity. I decided to opt for Material Design, since the website needs to look more like the booking app.</p>
-              <ul>
-                <li>Figma</li>
-              </ul>
+          <div class="opened__project__text">
+            <img class="opened__project__logo" src="images/projects/o2die_logo.png">
+            <h4>Graphism & Game Design</h4>
+            <p class="opened__project__description">This video game was created for The Heart Jam, one the biggest Game jam of
+            itch.io, gathering 158 participants. The theme was "Scarcity" and each team had 72 hours to develop a video game. The
+            Game Jam was conclued by a ranking, based on different categories : Fun, Visuals, Music, Sound, Story and Theme. As the
+            Art Director and Graphist, I made all of the 2D sprites, interface and other assets, as well as the Sound Design. The game
+            won the #1rst place of the category "Visuals".</p>
+            <ul class="opened__project__tools">
+              <li>Photoshop</li>
+              <li>Unity</li>
+            </ul>
           </div>
-          <div class="assets">
-            <a target="new" href="https://www.figma.com/file/fdrmyUaUHj1VmKbazfpTEpvZ/Uryo?node-id=85%3A43">Moodboard, Wireframes & Prototypes</a>
-            <a target="new" href="https://uryo.netlify.com/#header">Homepage Prototype</a>
+          <div class="opened__project__links">
+            <a target="new" href="https://itch.io/jam/heartjam/rate/238829">The Heart Jam Ranking</a>
+            <a target="new" href="https://lagache-louis.itch.io/o2-die">O2 Die's page</a>
+            <a target="new" href="https://www.youtube.com/watch?v=TSuRiHILrys">Gameplay Video</a>
           </div>
         </div>
 
         <div class="opened__project butellaForest">
-          <div class="text">
-              <img class="logo" src="images/projects/butellaforest_logo.png">
-              <h4>Development</h4>
-            <p class="description">For this redesign of the already existing EasyJet website, the challenge was to modernize and reorganize the user experience and interface, while staying as close as possible to the original brand's graphic identity. I decided to opt for Material Design, since the website needs to look more like the booking app.</p>
-              <ul>
-                <li>Figma</li>
-              </ul>
+          <div class="opened__project__text">
+            <img class="opened__project__logo" src="images/projects/butellaforest_logo.png">
+            <h4>JS Object-Oriented Programming</h4>
+            <p class="opened__project__description">During Hetic's intensive week of JavaScript, our challenge was to create a minimalist
+            video game. Butella forest takes place in the Indonesian jungle, which is threatened to be burnt down by a multinational
+            company. As a local farmer, the player must protect the land of his ancestors, and survive as long as possible. As the project
+            lead and JavaScript developer, I stayed away from design and graphism to focus on coding, using and training my OOP knowledge.</p>
+            <ul class="opened__project__tools">
+              <li>JavaScript</li>
+              <li>Object-Oriented Programming</li>
+              <li>OXO Library</li>
+            </ul>
+            <div class="opened__project__links">
+                <a target="new" href="https://github.com/EmmaCassagnettes/hetic-w1p2021-17-quake/blob/master/src/js/script.js">GitHub's repository</a>
+              <a target="new" href="https://butella-forest.netlify.com">The Game Demo</a>
+            </div>
           </div>
-          <img class="homepage" src="images/projects/butellaforest_capture.png">
+          <img class="opened__project__asset" src="images/projects/butellaforest_capture.png">
         </div>
 
         <div class="opened__project theSphinx">
@@ -209,45 +218,40 @@
         </div>
 
         <img class="crossIcon" id="crossIcon" src="./images/icons/cross.svg"></img>
-
       </section>
 
       <section class="skills">
-        <svg class="circle" version="1.1" x="0px" y="0px"
-          width="32.5rem" height="32.5rem" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
-          <path id="path" class="path" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" d="M100.416,2.001C154.35,2.225,198,46.015,198,100
-            c0,54.124-43.876,98-98,98S2,154.124,2,100S45.876,2,100,2"/>
+        <svg class="skills__circle" version="1.1" x="0px" y="0px" width="32.5rem" height="32.5rem" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
+          <path id="path" class="path" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" d="M100.416,2.001C154.35,2.225,198,46.015,198,100c0,54.124-43.876,98-98,98S2,154.124,2,100S45.876,2,100,2"/>
         </svg>
         <div class="items">
-            <div class="skillsList skillsList__left" data-depth="0.1">
-              <p class="fromBottom">HTML/CSS</p>
-              <p class="fromBottom">JavaScript</p>
-              <p class="fromBottom">WebGL/Three.js</p>
-              <p class="fromBottom">Php</p>
-              <p class="fromBottom">MySQL</p>
-            </div>
+          <div class="skillsList skillsList__left" data-depth="0.1">
+            <p class="fromBottom">HTML/CSS</p>
+            <p class="fromBottom">JavaScript</p>
+            <p class="fromBottom">WebGL/Three.js</p>
+            <p class="fromBottom">Php</p>
+            <p class="fromBottom">MySQL</p>
+          </div>
 
-            <div class="skillsList skillsList__right" data-depth="0.1">
-                <p class="fromBottom">UX Design</p>
-                <p class="fromBottom">UI Design</p>
-                <p class="fromBottom">Graphism</p>
-                <p class="fromBottom">Motion/Animation</p>
-                <p class="fromBottom">Illustration</p>
-              </div>
+          <div class="skillsList skillsList__right" data-depth="0.1">
+            <p class="fromBottom">UX Design</p>
+            <p class="fromBottom">UI Design</p>
+            <p class="fromBottom">Graphism</p>
+            <p class="fromBottom">Motion/Animation</p>
+            <p class="fromBottom">Illustration</p>
+          </div>
         </div>
             
-        <h2 data-depth="0.5" id="skillsTitle" class="randomized">My Skills</h2>
+        <h2 class="randomized" data-depth="0.5" id="skillsTitle">My Skills</h2>
       </section>
 
       <section class="about">
         <div class="about__content">
-          <div class="photo" data-depth="0.1">
-            <img src="./images/photo/portrait.png"/>
-          </div>
+          <img class="about__photo" data-depth="0.1" src="./images/photo/portrait.png"/>
           <p class="about__text" data-depth="0.2">
             I am a French student in Web development and UX/UI Design at HETIC, currently living in Paris.<br/>
             Graphist, Illustrator, Art Director, Game Designer & Creative developer on my free time.<br/>
-            Besides code and design, I am an animation and 3D learner.<br/>
+            Besides code and design, I am an animation and 3D active learner.<br/>
             Oh, and I also graduated from an English, Chinese & Communication Degree, in Taipei.
           </p>
         </div>
@@ -255,47 +259,53 @@
       </section>
 
       <section class="contact">
-        <p id="question" class="randomized" data-depth="0.2">Want to contact me ?</p>
+        <p class="randomized" id="contactQuestion" data-depth="0.2">Want to contact me ?</p>
         <p data-depth="0.1">amandine.donat.filliod@gmail.com</p>
         <div class="socialmedias" data-depth="0.1">
-          <a href="#"><img src="./images/icons/linkedin.svg"/></a>
-          <a href="#"><img src="./images/icons/dribble.svg"/></a>
-          <a href="#"><img src="./images/icons/codepen.svg"/></a>
-          <a href="#"><img src="./images/icons/github.svg"/></a>
-          <a href="#"><img src="./images/icons/flickr.svg"/></a>
+          <a href="https://www.linkedin.com/in/amandine-donat-filliod-929a58171/"><img src="./images/icons/linkedin.svg"/></a>
+          <a href="https://dribbble.com/amandinedonatfilliod"><img src="./images/icons/dribble.svg"/></a>
+          <a href="https://codepen.io/amandinedf/"><img src="./images/icons/codepen.svg"/></a>
+          <a href="https://github.com/AmandineDF"><img src="./images/icons/github.svg"/></a>
+          <a href="https://www.flickr.com/photos/152800298@N02/"><img src="./images/icons/flickr.svg"/></a>
         </div>
       </section>
-
     </main>
+
     <footer>
       <p>© • 2019 • Amandine Donat-Filliod</p>
     </footer>
-    <div class="cursor" id="cursor">
-      <div class="cursor__main"></div>
-      <div class="cursor__follower"></div>
-    </div>
+
     <div class="border"></div>
+    <div class="colorFilter"></div>
+    
     <div class="loader__text">
-        <svg viewBox="0 0 205.43 399.31"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linejoin:round;stroke-width:5px;}</style></defs>          
-          <g class="face">
-        <polyline class="cls-1" points="2.5 95.79 2.5 373.83 43.86 350.86 44.12 257.41 122.25 211.45 123.1 304.73 164.29 280.9 164.29 2.5 2.5 95.79"/>
-        <polyline class="cls-1" points="42.59 119.54 123.27 73.07 123.27 166.51 42.59 211.45 42.59 119.54"/></g>        
-          <g class="bottom">
-            <polygon id="dessous-2" data-name="dessous" class="cls-1" points="2.5 373.83 42.59 396.81 83.39 373.83 43.86 350.86 2.5 373.83"/>
-            <polygon id="dessous-3" data-name="dessous" class="cls-1" points="123.1 304.73 164.29 327.37 202.93 304.73 164.29 280.9 123.1 304.73"/>
-            <polygon id="dessous-4" data-name="dessous" class="cls-1" points="2.5 95.79 42.59 119.54 202.93 25.32 164.29 2.5 2.5 95.79"/>
-            <polyline class="cls-1" points="42.59 211.45 123.27 166.51 164.29 188.17 82.93 234.58 42.59 211.45"/>
-            <polyline class="cls-1" points="42.59 119.54 83.39 142.26 164.29 96.56 123.27 73.07 42.59 119.54"/>
-            <polygon class="cls-1" points="44.12 257.41 82.93 280.9 164.29 234.58 122.25 211.45 44.12 257.41"/></g>
-          <g class="side">
-            <polygon class="cls-1" points="83.39 142.26 82.93 234.58 42.59 211.45 42.59 119.54 83.39 142.26"/>
-            <polygon class="cls-1" points="44.12 257.41 82.93 280.9 83.39 373.83 43.86 350.86 44.12 257.41"/>
-            <polygon id="longest" class="cls-1" points="164.29 2.5 202.93 25.32 202.93 304.73 164.29 280.9 164.29 2.5"/>
-            <polygon class="cls-1" points="123.27 73.07 164.29 96.56 164.29 188.17 123.27 166.51 123.27 73.07"/>
-            <polygon class="cls-1" points="122.25 211.45 123.1 304.73 164.29 327.37 164.29 234.58 122.25 211.45"/></g></svg>
+      <svg class="loader__logo" viewBox="0 0 205.43 399.31"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linejoin:round;stroke-width:5px;}</style></defs>          
+        <g class="face">
+          <polyline class="cls-1" points="2.5 95.79 2.5 373.83 43.86 350.86 44.12 257.41 122.25 211.45 123.1 304.73 164.29 280.9 164.29 2.5 2.5 95.79"/>
+          <polyline class="cls-1" points="42.59 119.54 123.27 73.07 123.27 166.51 42.59 211.45 42.59 119.54"/>
+        </g>        
+        <g class="bottom">
+          <polygon id="dessous-2" data-name="dessous" class="cls-1" points="2.5 373.83 42.59 396.81 83.39 373.83 43.86 350.86 2.5 373.83"/>
+          <polygon id="dessous-3" data-name="dessous" class="cls-1" points="123.1 304.73 164.29 327.37 202.93 304.73 164.29 280.9 123.1 304.73"/>
+          <polygon id="dessous-4" data-name="dessous" class="cls-1" points="2.5 95.79 42.59 119.54 202.93 25.32 164.29 2.5 2.5 95.79"/>
+          <polyline class="cls-1" points="42.59 211.45 123.27 166.51 164.29 188.17 82.93 234.58 42.59 211.45"/>
+          <polyline class="cls-1" points="42.59 119.54 83.39 142.26 164.29 96.56 123.27 73.07 42.59 119.54"/>
+          <polygon class="cls-1" points="44.12 257.41 82.93 280.9 164.29 234.58 122.25 211.45 44.12 257.41"/>
+        </g>
+        <g class="side">
+          <polygon class="cls-1" points="83.39 142.26 82.93 234.58 42.59 211.45 42.59 119.54 83.39 142.26"/>
+          <polygon class="cls-1" points="44.12 257.41 82.93 280.9 83.39 373.83 43.86 350.86 44.12 257.41"/>
+          <polygon id="longest" class="cls-1" points="164.29 2.5 202.93 25.32 202.93 304.73 164.29 280.9 164.29 2.5"/>
+          <polygon class="cls-1" points="123.27 73.07 164.29 96.56 164.29 188.17 123.27 166.51 123.27 73.07"/>
+          <polygon class="cls-1" points="122.25 211.45 123.1 304.73 164.29 327.37 164.29 234.58 122.25 211.45"/>
+        </g>
+      </svg>
       <p class="fromBottom">Welcome</p>
       <p class="fromBottom">°</p>
       <p class="fromBottom">You found my portfolio.</p>
     </div>
+
+    <canvas class="canvas2D" id="canvas2D"></canvas>
+
   </body>
 </html>

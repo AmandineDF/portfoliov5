@@ -1,0 +1,12 @@
+@mixin bigTitle {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 1.5rem;
+  text-transform: uppercase;
+}
+
+@mixin sectionTitle {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}

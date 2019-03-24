@@ -84,26 +84,26 @@ var animateSection = function(index) {
   //INITIALIZE
   initRandomize();
   document.getElementById("projects").classList.remove("is-reached");
-  document.querySelector('.circle .path').classList.remove("offset");
+  document.querySelector('.skills__circle .path').classList.remove("offset");
   document.querySelectorAll(".fromBottom span").forEach(function(element) {
     element.classList.remove("appeared");
   });
-  document.querySelectorAll('.leftNav li')[0].classList.remove('menuTracker');
+  document.querySelectorAll('.leftNav li')[0].classList.remove('active');
 
   var lis = document.querySelectorAll('.leftNav li');
   for(let i = 0; i < lis.length; i++) {
     let li = lis[i];
     
     if( i == index){
-      li.classList.add('menuTracker');
+      li.classList.add('active');
     } else {
-      li.classList.remove('menuTracker');
+      li.classList.remove('active');
     }
   }
 
   //FIRST SECTION
   if (index == 0) {
-    let fromBottomElements = document.querySelectorAll('.landing .fromBottom');
+    let fromBottomElements = document.querySelectorAll('.intro .fromBottom');
     for(let i = 0; i < fromBottomElements.length-1;i++){
       setTimeout(function() {
         animateFromBottom(fromBottomElements[i]);
@@ -115,7 +115,7 @@ var animateSection = function(index) {
     }, 1000);
 
     setTimeout(function() {
-      animateFromBottom(".landing p:nth-of-type(4)");
+      animateFromBottom(".intro p:nth-of-type(4)");
     }, 2800);
 
     setTimeout(function() {
@@ -134,7 +134,7 @@ var animateSection = function(index) {
     randomize("#skillsTitle");
 
     
-    document.querySelector('.circle .path').classList.add("offset");
+    document.querySelector('.skills__circle .path').classList.add("offset");
     
     let leftElements = document.querySelectorAll('.skillsList__left p');
     for(let i = leftElements.length - 1; i >= 0; i--){
@@ -158,7 +158,7 @@ var animateSection = function(index) {
 
   //FIFTH SECTION
   } else if (index == 4) {
-    randomize('#question');
+    randomize('#contactQuestion');
   }
 };
 

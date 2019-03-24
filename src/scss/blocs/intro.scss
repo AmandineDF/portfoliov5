@@ -1,4 +1,4 @@
-.landing__content {
+.intro__text {
     width: 60vw;
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@
       margin-bottom: 1rem;
     }
 
-    div {
+    .scrollIcon__icon {
       height: 3.2rem;
       width: 1.8rem;
       border: 1.5px solid white;

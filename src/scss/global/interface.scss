@@ -1,32 +1,49 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,700,900');
-
 body {
-  background: url(../images/texture/noise.png) /*black rgb(25, 23, 26)*/;
+  background: url(../images/texture/noise.png);
   background-size: 256px 256px;
   background-repeat: repeat;
   background-attachment: fixed;
-  color: white;
-}
 
-body * {
-  font-family: 'Raleway', sans-serif;
+  * {
+    font-family: 'Raleway', sans-serif;
+    color: $contentColor;
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 0px; /* remove scrollbar space */
-  background: transparent; /* optional: just make scrollbar invisible */
+  width: 0px;
+  background: transparent;
+}
+
+section {
+  @include viewportSize;
+  position: relative;
+
+  h2 {
+    @include sectionTitle;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+  }
 }
 
 .border {
-  height: 100vh;
-  width: 100vw;
+  @include viewportSize;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 100;
   border: 500px solid rgb(11, 0, 15);
   pointer-events: none;
-  transition: all 1s ease;
+  transition: all 1s $cubic-bezier;
+}
+
+.colorFilter {
+  @include viewportSize;
+  position: fixed;
+  top: 0;
+  z-index: -10;
+  background: $colorFilter;
 }
 
 .loader__text {
@@ -36,12 +53,9 @@ body * {
   height: 100vh;
   width: 100vw;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include columnDisplay(center, center);
 
-  svg{
+  .loader__logo{
     height: 13vh;
     position: absolute;
     top: 20%;
@@ -49,81 +63,51 @@ body * {
     .face polyline {
       stroke-dasharray: 350;
       stroke-dashoffset: 350;
-      animation: lineAnimation 2s linear infinite;
     }
 
     .bottom polygon {
       stroke-dasharray: 500;
       stroke-dashoffset: 500;
-      animation: lineAnimation 2s linear infinite;
     }
 
     .bottom polyline {
       stroke-dasharray: 400;
       stroke-dashoffset: 400;
-      animation: lineAnimation 2s linear infinite;
     }
 
     .side polygon {
       stroke-dasharray: 300;
       stroke-dashoffset: 300;
-      animation: lineAnimation 2s linear infinite;
     }
 
     .side .polygon--longest {
       stroke-dasharray: 350;
       stroke-dashoffset: 350;
-      animation: lineAnimation 2s linear infinite;
-    }
-
-    @keyframes lineAnimation{
-      to{
-        stroke-dashoffset: 0;
-      }
     }
   }
 
-  p{  
-
+  p{
     &:nth-of-type(1) span{
-      font-size: 6rem;
-      font-weight: 700;
-      letter-spacing: 1.5rem;
-      text-transform: uppercase;
+      @include bigTitle;
     }
 
     &:nth-of-type(2) span, &:nth-of-type(3) span{
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-style: italic;
     }
   }
 }
 
-.colorFilter {
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: -10;
-  background: rgba(123, 0, 134, 0.05);
-}
-
 canvas {
-  height: 100vh;
-  width: 100vw;
-
-  position: absolute;
+  @include viewportSize;
+  position: fixed;
   top: 0;
-}
 
-.canvas2D {
-  height: 100vh;
-  width: 100%;
-  position: fixed;
-  z-index: -50;
-}
-
-.canvas3D {
-  position: fixed;
-  z-index: -20;
+  &.canvas3D {
+    z-index: -20;
+  }
+  
+  &.canvas2D {
+    z-index: -30;
+  }
 }

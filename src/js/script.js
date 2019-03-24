@@ -12,6 +12,8 @@ import {
 //export {THREE, noiseImage, glowImage, planetTexture, glowTexture} from "./planet";
 //import PlanetScene from "./planet";
 
+import TweenMax from "gsap/TweenMax";
+
 //----------------------------------- WINDOW ONLOAD -----------------------------------------//
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);

@@ -129,14 +129,14 @@
         display: block;
       }
 
-      .text {
+      .opened__project__text {
         top: 50%;
         left: 5rem;
         transform: translateY(-50%);
         position: absolute;
         width: 28rem;
 
-        .logo {
+        .opened__project__logo {
           height: 6.3rem;
           margin-bottom: 1rem;
         }
@@ -147,13 +147,13 @@
           margin-bottom: 2rem;
         }
 
-        .description {
+        .opened__project__description {
           line-height: 2;
           font-size: 0.9rem;
           margin-bottom: 2rem;
         }
 
-        ul {
+        .opened__project__tools {
           display: flex;
           flex-direction: row;
           width: 100%;
@@ -165,7 +165,7 @@
         }
       }
 
-      .assets {
+      .opened__project__links {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -189,7 +189,7 @@
         }
       }
 
-      .homepage {
+      .opened__project__asset {
         width: 28rem;
         position: absolute;
         right: 4rem;
@@ -234,7 +234,7 @@
     .butellaForest {
       background-image: url('/images/projects/butellaforest_bg.png');
 
-      .homepage {
+      .opened__project__asset {
         margin-top: 0;
         top: 50%;
         transform: translateY(-50%);
