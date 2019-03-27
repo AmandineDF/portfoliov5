@@ -10,6 +10,10 @@ body {
   }
 }
 
+html{
+  font-size: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
@@ -104,10 +108,53 @@ canvas {
   top: 0;
 
   &.canvas3D {
-    z-index: -20;
+    z-index: -30;
   }
   
   &.canvas2D {
-    z-index: -30;
+    z-index: -40;
+  }
+}
+
+.temporaryText {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  main, .leftNav {
+    display: none;
+  }
+
+  .temporaryText {
+    display: block;
+    @include viewportSize;
+    @include columnDisplay(center, center);
+    padding: 5vh;
+
+    p{
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 2;
+    }
+
+    p:nth-child(3) {
+      margin-top: 2em;
+    }
+
+    p:nth-child(4) {
+      font-size: 1rem;
+    }
+
+    .socialmedias{
+      margin-top: 2em;
+      width: 40%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  
+      img {
+        height: 30px;
+      }
+    }
   }
 }

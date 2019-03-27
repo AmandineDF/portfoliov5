@@ -10,15 +10,15 @@
     font-weight: 700;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
-    margin: 2rem 0rem;
+    margin: 0.5em 0em;
   }
 
-  p:nth-child(2) {
+  p:nth-child(2) span {
     font-size: 1.3rem;
   }
 
   .socialmedias{
-    margin-top: 3rem;
+    margin-top: 3em;
     width: 20%;
     display: flex;
     flex-direction: row;

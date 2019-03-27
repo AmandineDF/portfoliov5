@@ -63,6 +63,7 @@ var randomize = function(selector) {
         displayText += text.charAt(i);
       }
     }
+    
     element.innerHTML = displayText;
 
     if (currentIndex < text.length) {
@@ -107,12 +108,12 @@ var animateSection = function(index) {
     for(let i = 0; i < fromBottomElements.length-1;i++){
       setTimeout(function() {
         animateFromBottom(fromBottomElements[i]);
-      }, i * 50);
+      }, i * 400);
     }
 
     setTimeout(function() {
       randomize("#name");
-    }, 1000);
+    }, 1800);
 
     setTimeout(function() {
       animateFromBottom(".intro p:nth-of-type(4)");
@@ -159,6 +160,9 @@ var animateSection = function(index) {
   //FIFTH SECTION
   } else if (index == 4) {
     randomize('#contactQuestion');
+    setTimeout(function() {
+      animateFromBottom("#mail");
+    }, 1000);
   }
 };
 

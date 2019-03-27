@@ -54,7 +54,7 @@
           background: lightgrey;
         }
 
-        &:hover > h3 {
+        &:hover h3, &:hover span {
           color: transparent;
           background: transparent;
         }
@@ -141,6 +141,10 @@
           margin-bottom: 1rem;
         }
 
+        .logo--longest {
+          transform: translateX(-7%);
+        }
+
         h4 {
           font-size: 1.5rem;
           font-weight: 700;
@@ -189,6 +193,10 @@
         }
       }
 
+      .links--translate {
+        transform: translate(110%, 0%);
+      }
+
       .opened__project__asset {
         width: 28rem;
         position: absolute;
@@ -233,12 +241,17 @@
 
     .butellaForest {
       background-image: url('/images/projects/butellaforest_bg.png');
+      background-color: black;
+
+      .opened__project__links {
+
+      }
 
       .opened__project__asset {
         margin-top: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: 40rem;
+        width: 35rem;
       }
     }
 

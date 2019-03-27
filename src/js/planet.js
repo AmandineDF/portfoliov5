@@ -7,7 +7,7 @@ var glowImage = require("../images/texture/glow-small.png");
 
 var planetTexture = new THREE.TextureLoader().load(noiseImage);
 var glowTexture = new THREE.TextureLoader().load(glowImage);
-
+//SCENE
 class PlanetScene {
   constructor() {
     //SCENE
@@ -15,7 +15,7 @@ class PlanetScene {
 
     this.camera = new THREE.PerspectiveCamera(
       45,
-      window.innerWodth / window.innerHeight,
+      window.innerWidth / window.innerHeight,
       1,
       1000
     );
@@ -57,6 +57,7 @@ class PlanetScene {
       map: glowTexture
     });
     this.glowMaterial.transparent = true;
+
 
     this.glow = new THREE.Mesh(this.glowGeometry, this.glowMaterial);
     this.glow.position.y = 0.8;
