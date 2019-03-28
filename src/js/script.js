@@ -14,108 +14,53 @@ import PlanetScene from "./planet";
 
 import TweenMax from "gsap/TweenMax";
 
+var uryoGif = require("../images/gif/uryo.min.gif");
+var easyjetGif = require("../images/gif/easyjet.min.gif");
+var nespressoGif = require("../images/gif/nespresso.min.gif");
+var o2dieGif = require("../images/gif/o2die.min.gif");
+var butellaGif = require("../images/gif/butellaforest.min.gif");
+var taiwanGif = require("../images/gif/taiwan.min.gif");
+
+
+window._color = "white";
+
 //----------------------------------- WINDOW ONLOAD -----------------------------------------//
+//Force to start from the beginning  after reloading
 window.onbeforeunload = function() {
   window.scrollTo(0, 0);
 };
 
 window.onload = function() {
+  //Animations init
   initRandomize();
   initFromBottom();
 
+  //Imports
   let parallax = new Parallax(0.3, 0.05);
   let sinwave = new SinWave("#canvas2D");
   let planetScene = new PlanetScene("#canvas3D");
 
+  //Gif Lazy loads
+  document.querySelector('#uryo img').setAttribute('src', uryoGif);
+  document.querySelector('#easyjet img').setAttribute('src', easyjetGif);
+  document.querySelector('#nespresso img').setAttribute('src', nespressoGif);
+  document.querySelector('#o2die img').setAttribute('src', o2dieGif);
+  document.querySelector('#butellaForest img').setAttribute('src', butellaGif);
+  document.querySelector('#taiwan img').setAttribute('src', taiwanGif);
+
+  //Update every objects
   var update = function() {
     sinwave.update();
+    sinwave.color = window._color;
     parallax.update();
     planetScene.render();
-
-    /*cursor.x += (parallax.mouse.x - cursor.x) * 0.3;
-    cursor.y += (parallax.mouse.y - cursor.y) * 0.3;
-    
-    TweenMax.set('#cursor',{x: cursor.x - 15, y: cursor.y - 15, force3D:true });*/
 
     requestAnimationFrame(update);
   };
 
   update();
 
-  //CONTROLLED SCROLL
-
-  let currentIndex = 0;
-  let canScroll = true;
-
-  var changeIndex = function(index) {
-    if (canScroll) {
-      canScroll = false;
-
-      var selector = "section:nth-child(" + (currentIndex + 1) + ")";
-
-      if (index <= 4 && index >= 0 && index != currentIndex) {
-        currentIndex = index;
-      } else {
-        canScroll = true;
-        return;
-      }
-
-      TweenMax.to(selector, 0.4, {
-        opacity: 0
-      });
-
-      setTimeout(() => {
-        canScroll = true;
-      }, 2000);
-
-      TweenMax.to("section:nth-child(" + (currentIndex + 1) + ")", 0.2, {
-        opacity: 1
-      });
-
-      TweenMax.to(window, 0.8, {
-        scrollTo: currentIndex * window.innerHeight,
-        onComplete: function() {
-          animateSection(currentIndex);
-        }
-      });
-    }
-  };
-
-  var downBtn = document.getElementById("downBtn");
-  downBtn.addEventListener("click", function() {
-    changeIndex(currentIndex + 1);
-  });
-
-  var upBtn = document.getElementById("upBtn");
-  upBtn.addEventListener("click", function() {
-    changeIndex(currentIndex - 1);
-  });
-
-  window.onwheel = function(e) {
-    e.preventDefault();
-    changeIndex(currentIndex + Math.sign(e.deltaY));
-    console.log(e.deltaY);
-
-    if (Math.sign(e.deltaY) == 1) {
-      document.getElementById("downBtn").classList.add("triggered");
-      setTimeout(() => {
-        document.getElementById("downBtn").classList.remove("triggered");
-      }, 500);
-    } else {
-      document.getElementById("upBtn").classList.add("triggered");
-      setTimeout(() => {
-        document.getElementById("upBtn").classList.remove("triggered");
-      }, 500);
-    }
-  };
-
-  var leftNav = document.querySelectorAll(".leftNav li");
-  for (let i = 0; i < leftNav.length; i++) {
-    leftNav[i].addEventListener("click", function() {
-      changeIndex(i);
-    });
-  }
-
+  //LOADER ANIMATIONS
   let fromBottomElements = document.querySelectorAll(".loader__text .fromBottom");
   for (let i = 1; i <= fromBottomElements.length; i++) {
     setTimeout(function() {
@@ -151,9 +96,83 @@ window.onload = function() {
   setTimeout(function() {
     animateSection(0);
   }, 5000);
-    
-  
 
+  //CONTROLLED SCROLL
+  let currentIndex = 0; //Current index, which is different from "index", the next one
+  let canScroll = true; //Fix the "infinite scroll" problem
+
+  var changeIndex = function(index) {
+    if (canScroll) {
+      canScroll = false;
+
+      var selector = "section:nth-child(" + (currentIndex + 1) + ")";
+
+      if (index <= 4 && index >= 0 && index != currentIndex) { //"4" is because I have 5 sections
+
+        if (currentIndex < index) {
+          document.getElementById("downBtn").classList.add("triggered");
+          setTimeout(() => {
+            document.getElementById("downBtn").classList.remove("triggered");
+          }, 500);
+        } else {
+          document.getElementById("upBtn").classList.add("triggered");
+          setTimeout(() => {
+            document.getElementById("upBtn").classList.remove("triggered");
+          }, 500);
+        }
+
+        currentIndex = index;
+      } else {
+        canScroll = true;
+        return;
+      }
+
+      TweenMax.to(selector, 0.4, {
+        opacity: 0
+      });
+
+      setTimeout(() => {
+        canScroll = true;
+      }, 2000);
+
+      TweenMax.to("section:nth-child(" + (currentIndex + 1) + ")", 0.2, {
+        opacity: 1
+      });
+
+      TweenMax.to(window, 0.8, {
+        scrollTo: currentIndex * window.innerHeight,
+        onComplete: function() {
+          animateSection(currentIndex);//start the animations of the new section
+        }
+      });
+    }
+  };
+
+  //rightNav arrows
+  var downBtn = document.getElementById("downBtn");
+  downBtn.addEventListener("click", function() {
+    changeIndex(currentIndex + 1);
+  });
+
+  var upBtn = document.getElementById("upBtn");
+  upBtn.addEventListener("click", function() {
+    changeIndex(currentIndex - 1);
+  });
+
+  window.onwheel = function(e) {
+    e.preventDefault();
+    changeIndex(currentIndex + Math.sign(e.deltaY));
+  };
+
+  //leftNav menu
+  var leftNav = document.querySelectorAll(".leftNav li");
+  for (let i = 0; i < leftNav.length; i++) {
+    leftNav[i].addEventListener("click", function() {
+      changeIndex(i);
+    });
+  }   
+  
+  //When a Back-end dev would be helpful...
   var crossIcon = document.getElementById("crossIcon");
 
   var uryoMini = document.querySelector("#uryo");
@@ -221,15 +240,27 @@ window.onload = function() {
     canScroll = true;
   });
 
-  var styles = [
-    "background: lightslategrey",
+  //Little console Easter Egg
+  var mainStyle = [
+    "background: darkblue",
     "color: white",
     "display: block",
     "padding: 1rem 0.5rem",
     "text-align: center",
-    "font-weight: bold",
     "font-size: 1.5rem"
   ].join(";");
 
-  console.log("%c Hello Curious John", styles);
+  var simpleStyle = [
+    "background: darkblue",
+    "color: white",
+    "display: block",
+    "padding: 0.5rem",
+    "text-align: center",
+    "font-size: 1rem"
+  ].join(";");
+
+  console.log("%c Hello Curious John/Jane.", mainStyle);
+  console.log(`%c What's your favorite color ? Write it in the function below to see some magic...`, mainStyle);
+  console.log(`%c example: window._color ="purple"`, simpleStyle);
+  
 };

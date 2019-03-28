@@ -1,267 +1,246 @@
 .works {
-    .projects {
-      height: 70%;
-      width: 70%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-  
-      position: absolute;
-      top: 15%;
-      left: 0;
-      right: 0;
-      margin: auto;
-  
-      div {
-        height: calc(100% / 2);
-        width: calc(100% / 4);
-        background: lightslategray;
-  
-        transition: transform 0.5s ease-out;
-        transform-origin: center;
-        transform: perspective(800px) rotateY(90deg);
-        position: relative;
-        overflow: hidden;
+  .projects {
+    height: 70%;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
-        h3 {
-          font-size: 2rem;
-          font-weight: 700;
-          position: absolute;
-          z-index: 300;
-          height: 100%;
-          width: 100%;
-          text-align: center;
-          padding-top: 40%;
-          background: rgba($color: #000000, $alpha: 0.5);
-          transition: all 0.3s;
+    position: absolute;
+    top: 15%;
+    left: 0;
+    right: 0;
+    margin: auto;
 
-          span {
-            display: block;
-            margin-top: 1rem;
-            font-style: italic;
-          }
-        }
-  
-        img{
-          height: 100%;
-          object-fit: cover;
-          position: absolute;
-        }
-  
-        &:hover {
-          cursor: pointer;
-          background: lightgrey;
-        }
+    div {
+      height: calc(100% / 2);
+      width: calc(100% / 4);
 
-        &:hover h3, &:hover span {
-          color: transparent;
-          background: transparent;
-        }
-      }
-  
-      @for $i from 0 through 9 {
-        div:nth-child(#{$i}) {
-          transition-delay: $i * 0.1s;
-        }
-      }
+      transition: transform 0.5s ease-out;
+      transform-origin: center;
+      transform: perspective(800px) rotateY(90deg);
+      position: relative;
+      overflow: hidden;
 
-      div:nth-child(1) img {
-        left: -40%;
-      }
-
-      div:nth-child(2) img {
-        left: -30%;
-      }
-
-      div:nth-child(3) img {
-        left: -30%;
-      }
-
-      div:nth-child(4) img {
-        left: -30%;
-      }
-
-      div:nth-child(6) img {
+      h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        position: absolute;
+        z-index: 300;
+        height: 100%;
         width: 100%;
-      }
-
-      div:nth-child(7) img{
-        width: 150%;
-        left: -25%;
-      }
-
-      div:nth-child(8) img{
-        left: -30%;
-      }
-    }
-  
-    .is-reached {
-      div {
-        transform: perspective(0) rotateY(0);
-      }
-    }
-  
-    .opened__project {
-      height: 0%;
-      width: 0%;
-      background-color: rgb(3, 3, 3);
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px;
-      position: absolute;
-      top: 0%;
-      left: 0%;
-      transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-      *{
-        display:none;
-      }
-    }
-  
-    .clicked {
-      height: 100%;
-      width: 100%;
-      padding: 1rem;
-      z-index: 100;
-
-      *{
-        display: block;
-      }
-
-      .opened__project__text {
-        top: 50%;
-        left: 5rem;
-        transform: translateY(-50%);
-        position: absolute;
-        width: 28rem;
-
-        .opened__project__logo {
-          height: 6.3rem;
-          margin-bottom: 1rem;
-        }
-
-        .logo--longest {
-          transform: translateX(-7%);
-        }
-
-        h4 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin-bottom: 2rem;
-        }
-
-        .opened__project__description {
-          line-height: 2;
-          font-size: 0.9rem;
-          margin-bottom: 2rem;
-        }
-
-        .opened__project__tools {
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          justify-content: space-between;
-
-          li{
-            font-style: italic;
-          }
-        }
-      }
-
-      .opened__project__links {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        position: absolute;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        height: 20%;
-        justify-content: space-around;
-        align-items: center;
+        padding-top: 40%;
+        background: rgba($color: #000000, $alpha: 0.5);
+        transition: all 0.3s;
 
-        a {
-          text-transform: uppercase;
-          font-weight: 700;
-          transition: all 0.3s;
-
-          &:hover {
-            text-shadow:
-          0 0 20px #fff;
-          }
+        span {
+          display: block;
+          margin-top: 1rem;
+          font-style: italic;
         }
       }
 
-      .links--translate {
-        transform: translate(110%, 0%);
-      }
-
-      .opened__project__asset {
-        width: 28rem;
+      img {
+        height: 100%;
+        object-fit: cover;
         position: absolute;
-        right: 4rem;
-        margin-top: 1rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background: lightgrey;
+      }
+
+      &:hover h3,
+      &:hover span {
+        color: transparent;
+        background: transparent;
       }
     }
 
-    .crossIcon {
-      height: 30px;
-      width: 30px;
-      opacity: 1;
-      position: absolute;
-      z-index: 5000;
-      top: 1rem;
-      left: 1rem;
-      pointer-events: none;
-      display: none;
-    }
-
-    .active {
-      display: block;
-      pointer-events: all;
-      cursor: pointer;
-    }
-
-    .uryo {
-      background-image: url('/images/projects/uryo_bg.png');
-    }
-
-    .easyjet {
-      background-image: url('/images/projects/easyjet_bg.png');
-    }
-
-    .nespresso {
-      background-image: url('/images/projects/nespresso_bg.png');
-    }
-
-    .o2die {
-      background-image: url('/images/projects/o2die_bg.png');
-    }
-
-    .butellaForest {
-      background-image: url('/images/projects/butellaforest_bg.png');
-      background-color: black;
-
-      .opened__project__links {
-
-      }
-
-      .opened__project__asset {
-        margin-top: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 35rem;
+    @for $i from 0 through 9 {
+      div:nth-child(#{$i}) {
+        transition-delay: $i * 0.1s;
       }
     }
 
-    .theSphinx {
-      background-image: url('/images/projects/thesphinx.jpg');
-      background-size: auto 130%;
+    div:nth-child(1) img {
+      left: -40%;
     }
 
-    .insideOfUs {
-      background-image: url('/images/projects/insideofus.jpg');
-      background-size: auto 130%;
+    div:nth-child(2) img, div:nth-child(3) img, div:nth-child(4) img, div:nth-child(8) img {
+      left: -30%;
+    }
+
+    div:nth-child(6) img {
+      width: 100%;
+    }
+
+    div:nth-child(7) img {
+      width: 150%;
+      left: -25%;
     }
   }
+
+  .is-reached {
+    div {
+      transform: perspective(0) rotateY(0);
+    }
+  }
+
+  .opened__project {
+    height: 0%;
+    width: 0%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transition: all 0.8s $cubic-bezier;
+
+    * {
+      display: none;
+    }
+  }
+
+  .clicked {
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    z-index: 100;
+
+    * {
+      display: block;
+    }
+
+    .opened__project__text {
+      top: 50%;
+      left: 4em;
+      transform: translateY(-50%);
+      position: absolute;
+      width: 30%;
+
+      .opened__project__logo {
+        height: 6em;
+        margin-bottom: 1em;
+      }
+
+      .logo--longest {
+        transform: translateX(-7%);
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2em;
+      }
+
+      .opened__project__description {
+        line-height: 2;
+        font-size: 0.9rem;
+        margin-bottom: 2em;
+      }
+
+      .opened__project__tools {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+
+        li {
+          font-style: italic;
+        }
+      }
+    }
+
+    .opened__project__links {
+      height: 20%;
+      @include absoluteCenter(50%, 50%, -50%, -50%);
+      @include columnDisplay(space-around, center);
+      text-align: center;
+
+      a {
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: all 0.3s;
+
+        &:hover {
+          text-shadow: 0 0 20px $contentColor;
+        }
+      }
+    }
+
+    .links--translate {
+      transform: translate(110%, 0%);
+    }
+
+    .opened__project__asset {
+      width: 30%;
+      position: absolute;
+      right: 4em;
+      margin-top: 1em;
+    }
+  }
+
+  .crossIcon {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+    position: absolute;
+    z-index: 5000;
+    top: 1em;
+    left: 1em;
+    pointer-events: none;
+    display: none;
+  }
+
+  .active {
+    display: block;
+    pointer-events: all;
+    cursor: pointer;
+  }
+
+  .uryo {
+    background-image: url("/images/projects/uryo_bg.png");
+  }
+
+  .easyjet {
+    background-image: url("/images/projects/easyjet_bg.png");
+  }
+
+  .nespresso {
+    background-image: url("/images/projects/nespresso_bg.png");
+  }
+
+  .o2die {
+    background-image: url("/images/projects/o2die_bg.png");
+  }
+
+  .butellaForest {
+    background-image: url("/images/projects/butellaforest_bg.png");
+    background-color: black;
+
+    .opened__project__links {
+    }
+
+    .opened__project__asset {
+      margin-top: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 35%;
+    }
+  }
+
+  .theSphinx {
+    background-image: url("/images/projects/thesphinx.png");
+    background-size: auto 130%;
+  }
+
+  .insideOfUs {
+    background-image: url("/images/projects/insideofus.png");
+    background-size: auto 130%;
+  }
+}

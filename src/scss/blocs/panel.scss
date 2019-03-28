@@ -68,7 +68,7 @@ header {
 
       & span {
         color: $contentColor;
-        text-shadow: 0 0 20px #fff;
+        text-shadow: 0 0 20px $contentColor;
       }
     }
   }
@@ -110,7 +110,7 @@ header {
 
     .triggered {
       border: 1.5px solid $contentColor;
-      box-shadow: inset 0 0 10px #fff, 0 0 10px #fff;
+      box-shadow: inset 0 0 10px $contentColor, 0 0 10px $contentColor;
       cursor: pointer;
 
       img {

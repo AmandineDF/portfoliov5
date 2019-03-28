@@ -124,7 +124,6 @@ var animateSection = function(index) {
     }, 3500);
 
 
-
   //SECOND SECTION
   } else if (index == 1) {
     document.getElementById("projects").classList.add("is-reached");
@@ -150,8 +149,6 @@ var animateSection = function(index) {
         animateFromBottom(rightElements[i]);
       }, i*300 + 1000);
     }
-    
-    //FAIRE 2 for gauche et droite
 
   //FOURTH SECTION
   } else if (index == 3) {

@@ -16,6 +16,7 @@ class SinWave{
         this.lastTime = Date.now();
 
         //this.update();
+        this.color = "white";
     }
 
     update() {
@@ -33,7 +34,7 @@ class SinWave{
 
         //STYLE
         this.ratio = window.innerWidth / 1920;
-        this.ctx.strokeStyle = "white";
+        this.ctx.strokeStyle = this.color;
         this.ctx.lineWidth = 350 * this.ratio;
         this.ctx.globalAlpha = 0.2; //Note : globalAlpha is for all of the canvas
         this.ctx.filter = "blur(40px)";
@@ -50,9 +51,6 @@ class SinWave{
         }
 
         this.ctx.stroke();
-
-        //requestAnimationFrame(() => { this.update(); });
-        //requestAnimationFrame(this.update);
     }
 }
 

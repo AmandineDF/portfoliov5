@@ -1,10 +1,8 @@
 .skills {
 
   .skills__circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include absoluteCenter(50%, 50%, -50%, -50%);
+    height: 72%;
 
     .path {
       stroke-dasharray: 620;
@@ -41,7 +39,7 @@
     }
 
     p:hover {
-      text-shadow: 0 0 20px #fff;
+      text-shadow: 0 0 20px $contentColor;
       cursor: pointer;
     }
   }

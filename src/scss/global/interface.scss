@@ -3,6 +3,7 @@ body {
   background-size: 256px 256px;
   background-repeat: repeat;
   background-attachment: fixed;
+  cursor: crosshair;
 
   * {
     font-family: 'Raleway', sans-serif;
@@ -36,7 +37,7 @@ section {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 100;
+  z-index: 10000;
   border: 500px solid rgb(11, 0, 15);
   pointer-events: none;
   transition: all 1s $cubic-bezier;
@@ -56,10 +57,10 @@ section {
   left:0;
   height: 100vh;
   width: 100vw;
-  z-index: 1000;
+  z-index: 20000;
   @include columnDisplay(center, center);
 
-  .loader__logo{
+  .loader__logo {
     height: 13vh;
     position: absolute;
     top: 20%;

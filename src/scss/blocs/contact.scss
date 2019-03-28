@@ -1,8 +1,5 @@
 .contact {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include columnDisplay(center, center);
 
   p:nth-child(1) {
     text-align: center;
