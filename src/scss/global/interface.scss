@@ -45,7 +45,7 @@ section {
   top: 0;
   right: 0;
   z-index: 10000;
-  border: 500px solid rgb(6, 0, 8);
+  border: 800px solid rgb(6, 0, 8);
   pointer-events: none;
   transition: all 1s $cubic-bezier;
 }
@@ -134,8 +134,21 @@ canvas {
 }
 
 @media (max-width: 1200px) {
+
+  html{
+    font-size: 70%;
+  }
+
+  .loader__text p {
+    display: none;
+  }
+
   main, .leftNav {
     display: none;
+  }
+
+  .rightNav {
+    opacity: 0;
   }
 
   .temporaryText {
