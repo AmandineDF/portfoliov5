@@ -25,7 +25,7 @@ $svg-animation: lineAnimation 2s linear infinite;
 
 .loader__logo {
 
-  .face polyline, .bottom polygon, .bottom polyline, .side polygon, .side .polygon--longest {
+  .face polyline, .bottom polygon, .bottom polyline, .side polygon, .side .polygon--longest, path {
     animation: $svg-animation;
   }
 }

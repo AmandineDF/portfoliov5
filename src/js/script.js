@@ -31,6 +31,7 @@ window.onbeforeunload = function() {
 };
 
 window.onload = function() {
+  document.querySelector('body').style.opacity = 1;
   //Animations init
   initRandomize();
   initFromBottom();
@@ -139,10 +140,7 @@ window.onload = function() {
         opacity: 1
       });
 
-      TweenMax.to(window, 0.8, {
-        scrollTo: currentIndex * window.innerHeight,
-        onComplete: function() {
-          animateSection(currentIndex);//start the animations of the new section
+      TweenMax.to(window, 0.8, { scrollTo: {y: currentIndex * window.innerHeight, autoKill:false}, onComplete: function() {  animateSection(currentIndex);//start the animations of the new section
         }
       });
     }
@@ -159,10 +157,10 @@ window.onload = function() {
     changeIndex(currentIndex - 1);
   });
 
-  window.onwheel = function(e) {
-    e.preventDefault();
+  window.addEventListener('wheel', function(e){
+    //e.preventDefault();
     changeIndex(currentIndex + Math.sign(e.deltaY));
-  };
+  });
 
   //leftNav menu
   var leftNav = document.querySelectorAll(".leftNav li");

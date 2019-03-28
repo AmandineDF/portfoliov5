@@ -1,23 +1,30 @@
+html{
+  font-size: 100%;
+}
+
 body {
   background: url(../images/texture/noise.png);
   background-size: 256px 256px;
   background-repeat: repeat;
   background-attachment: fixed;
   cursor: crosshair;
+  touch-action: none;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.1s;
 
   * {
     font-family: 'Raleway', sans-serif;
     color: $contentColor;
+    touch-action: none;
   }
-}
-
-html{
-  font-size: 100%;
 }
 
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
+  touch-action: none;
 }
 
 section {
@@ -38,7 +45,7 @@ section {
   top: 0;
   right: 0;
   z-index: 10000;
-  border: 500px solid rgb(11, 0, 15);
+  border: 500px solid rgb(6, 0, 8);
   pointer-events: none;
   transition: all 1s $cubic-bezier;
 }
@@ -64,6 +71,11 @@ section {
     height: 13vh;
     position: absolute;
     top: 20%;
+
+    path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+    }
 
     .face polyline {
       stroke-dasharray: 350;
